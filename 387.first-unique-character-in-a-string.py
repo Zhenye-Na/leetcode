@@ -1,9 +1,11 @@
-class Solution(object):
-    def firstUniqChar(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
+#
+# @lc app=leetcode id=387 lang=python3
+#
+# [387] First Unique Character in a String
+#
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        
         mapping = {}
 
         if not s or len(s) <= 0:

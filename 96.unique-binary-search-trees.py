@@ -1,9 +1,11 @@
-class Solution(object):
-    def numTrees(self, n):
-        """
-        :type n: int
-        :rtype: int
-        """
+#
+# @lc app=leetcode id=96 lang=python3
+#
+# [96] Unique Binary Search Trees
+#
+class Solution:
+    def numTrees(self, n: int) -> int:
+        
         if n <= 1:
             return 1
 
@@ -22,4 +24,3 @@ class Solution(object):
 
         # Return last entry
         return catalan[n]
-        
