@@ -15,12 +15,13 @@ C_k is at location (N-1, N-1) (ie. has value grid[N-1][N-1])
 If C_i is located at (r, c), then grid[r][c] is empty (ie. grid[r][c] == 0).
 Return the length of the shortest such clear path from top-left to bottom-right.  If such a path does not exist, return -1.
 
- 
 
 Example 1:
 
 Input: [[0,1],[1,0]]
 Output: 2
+
+
 Example 2:
 
 Input: [[0,0,0],[1,1,0],[1,1,0]]
