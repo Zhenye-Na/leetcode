@@ -61,29 +61,20 @@ class Solution(object):
                 i -= 1
                 index -= 1
 
-        print("".join(result[::-1]))
         while i > 0:
             result.append(str1[i - 1])
             i -= 1
             index -= 1
 
-        print("".join(result[::-1]))
         while j > 0:
             result.append(str2[j - 1])
             j -= 1
             index -= 1
                 
         return "".join(result[::-1])
-                
-                
-    # Returns length of LCS for 
-    # X[0..m - 1], Y[0..n - 1]
+
     def lcs(self, X, Y, m, n, dp): 
 
-        # Following steps build L[m + 1][n + 1] 
-        # in bottom up fashion. Note that L[i][j] 
-        # contains length of LCS of X[0..i - 1] 
-        # and Y[0..j - 1] 
         for i in range(m + 1): 
 
             for j in range(n + 1): 
