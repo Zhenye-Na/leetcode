@@ -3,6 +3,8 @@
 #
 # [162] Find Peak Element
 #
+
+
 class Solution:
     def findPeakElement(self, nums: List[int]) -> int:
         start, end = 0, len(nums) - 1
@@ -20,5 +22,3 @@ class Solution:
                 end = P
 
         return start if nums[start] >= nums[end] else end
-
-

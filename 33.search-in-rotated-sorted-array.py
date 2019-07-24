@@ -3,6 +3,8 @@
 #
 # [33] Search in Rotated Sorted Array
 #
+
+
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         if nums is None or len(nums) == 0:
@@ -23,10 +25,8 @@ class Solution:
                 else:
                     end = mid
 
-
         if nums[start] == target:
             return start
         if nums[end] == target:
             return end
         return -1
-

@@ -3,9 +3,11 @@
 #
 # [387] First Unique Character in a String
 #
+
+
 class Solution:
     def firstUniqChar(self, s: str) -> int:
-        
+
         mapping = {}
 
         if not s or len(s) <= 0:

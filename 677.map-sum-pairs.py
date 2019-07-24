@@ -3,6 +3,8 @@
 #
 # [677] Map Sum Pairs
 #
+
+
 class MapSum:
 
     def __init__(self):
@@ -25,7 +27,7 @@ class MapSum:
 
 
 class TrieNode:
-    
+
     def __init__(self):
         self.children = {}
         self.val = 0
@@ -45,7 +47,6 @@ class Trie:
             node = node.children[ch]
             node.val += val
 
-
     def searchPrefix(self, prefix):
         node = self.root
         for ch in prefix:
@@ -60,4 +61,3 @@ class Trie:
 # obj = MapSum()
 # obj.insert(key,val)
 # param_2 = obj.sum(prefix)
-
