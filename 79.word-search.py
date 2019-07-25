@@ -3,8 +3,10 @@
 #
 # [79] Word Search
 #
+
+
 class Solution:
-    dx = [1, -1, 0 , 0]
+    dx = [1, -1, 0, 0]
     dy = [0, 0, 1, -1]
 
     def exist(self, board: List[List[str]], word: str) -> bool:
@@ -35,10 +37,8 @@ class Solution:
             new_x, new_y = x + self.dx[i], y + self.dy[i]
             if self.isValid(new_x, new_y, board, word, idx, history):
                 if not self.contains:
-                    self.dfs(new_x, new_y, board, word, idx + 1, history.copy())
-
+                    self.dfs(new_x, new_y, board, word,
+                             idx + 1, history.copy())
 
     def isValid(self, x, y, board, word, idx, history):
         return 0 <= x < self.m and 0 <= y < self.n and board[x][y] == word[idx] and (x, y) not in history
-
-
