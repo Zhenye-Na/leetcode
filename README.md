@@ -3,6 +3,7 @@
 推荐:
 
 - [Leetcode 分类顺序表第二版(增加重点250题)](https://cspiration.com/leetcodeClassification)
+- 或者 [here](./leetcode-400.md)
 
 **Weekly Contest 141**
 
