@@ -12,7 +12,6 @@ class Solution:
         self.dfs(n, n, '', n)
         return self.result
 
-
     def dfs(self, left, right, current, n):
         if len(current) == 2 * n:
             self.result.append(current)
@@ -22,5 +21,3 @@ class Solution:
 
         if right > left:
             self.dfs(left, right - 1, current + ')', n)
-
-

@@ -36,6 +36,6 @@
 # @lc code=start
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        
+        # state: f[i]
 # @lc code=end
 

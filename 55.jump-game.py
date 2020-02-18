@@ -44,6 +44,18 @@
 # @lc code=start
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        
+        # Dynamic Programming
+        # state: f[i] represents whether can jump to ith position
+        f = [False] * len(nums)
+        f[0] = True
+
+        # function: f[i] <- f[j] and f[j] + j > i for j in 0 ... i
+        for i in range(len(nums)):
+            for j in range(i):
+                if f[j] and f[j] + j >= i:
+                    f[i] = True
+                    break
+
+        return f[-1]
 # @lc code=end
 
