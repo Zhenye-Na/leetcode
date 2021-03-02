@@ -48,9 +48,34 @@ class Solution:
         if not nums or len(nums) == 0:
             return 1
 
+        # Step 1
+        l = len(nums)
+        containsOne = False
+        for i in range(l):
+            if nums[i] == 1:
+                containsOne = True
+            
+            elif nums[i] <= 0 or nums[i] > l:
+                nums[i] = 1
 
+        # if we do not see an One, we directly return 1
+        if not containsOne:
+            return 1
 
+        # Step 2
+        for i in range(l):
+            if nums[abs(nums[i]) - 1] > 0:
+                nums[abs(nums[i]) - 1] *= -1
+
+        # Step 3
+        for i in range(l):
+            if nums[i] > 0:
+                return i + 1
+        return l + 1
 
 
 # @lc code=end
+
+# resources
+#   https://www.youtube.com/watch?v=9SnkdYXNIzM&ab_channel=MichaelMuinos
 
