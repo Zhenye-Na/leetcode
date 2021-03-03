@@ -1,0 +1,80 @@
+#
+# @lc app=leetcode id=695 lang=python3
+#
+# [695] Max Area of Island
+#
+# https://leetcode.com/problems/max-area-of-island/description/
+#
+# algorithms
+# Medium (64.42%)
+# Likes:    2794
+# Dislikes: 94
+# Total Accepted:    215.6K
+# Total Submissions: 332.7K
+# Testcase Example:  '[[1,1,0,0,0],[1,1,0,0,0],[0,0,0,1,1],[0,0,0,1,1]]'
+#
+# Given a non-empty 2D array grid of 0's and 1's, an island is a group of 1's
+# (representing land) connected 4-directionally (horizontal or vertical.) You
+# may assume all four edges of the grid are surrounded by water.
+# 
+# Find the maximum area of an island in the given 2D array. (If there is no
+# island, the maximum area is 0.)
+# 
+# Example 1:
+# 
+# 
+# [[0,0,1,0,0,0,0,1,0,0,0,0,0],
+# ⁠[0,0,0,0,0,0,0,1,1,1,0,0,0],
+# ⁠[0,1,1,0,1,0,0,0,0,0,0,0,0],
+# ⁠[0,1,0,0,1,1,0,0,1,0,1,0,0],
+# ⁠[0,1,0,0,1,1,0,0,1,1,1,0,0],
+# ⁠[0,0,0,0,0,0,0,0,0,0,1,0,0],
+# ⁠[0,0,0,0,0,0,0,1,1,1,0,0,0],
+# ⁠[0,0,0,0,0,0,0,1,1,0,0,0,0]]
+# 
+# Given the above grid, return 6. Note the answer is not 11, because the island
+# must be connected 4-directionally.
+# 
+# Example 2:
+# 
+# 
+# [[0,0,0,0,0,0,0,0]]
+# Given the above grid, return 0.
+# 
+# Note: The length of each dimension in the given grid does not exceed 50.
+# 
+#
+
+# @lc code=start
+
+from collections import deque
+
+class Solution:
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        row, col = len(grid),len(grid[0])
+        queue = deque([])
+        max_area = 0
+        
+        if not grid or not grid[0]:
+            return 0 
+        
+        for x in range(row):
+            for y in range(col):
+                if grid[x][y]==1:
+                    grid[x][y]=2
+                    queue.append((x,y))
+                    max_area = max(max_area, self.bfs(queue, row, col, grid))
+        return max_area
+
+    def bfs(self, queue, row, col, grid):
+        cur_area = 1
+        while queue:
+            x,y = queue.popleft()
+            for nx, ny in [[x+1,y], [x-1,y], [x,y+1], [x,y-1]]:
+                if 0<=nx<row and 0<=ny<col and grid[nx][ny]==1:
+                    grid[nx][ny]=2
+                    cur_area+=1
+                    queue.append((nx,ny))
+        return cur_area
+# @lc code=end
+

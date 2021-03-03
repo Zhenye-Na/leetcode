@@ -37,22 +37,28 @@
 # Output: 49
 # 
 # Youtube solution:
-# https://www.youtube.com/watch?v=IONgE6QZgGI
+#   https://www.youtube.com/watch?v=IONgE6QZgGI
+#   https://www.youtube.com/watch?v=JMmKtYH5VOE&ab_channel=MichaelMuinos
 #
 
 # @lc code=start
 class Solution:
     def maxArea(self, heights: List[int]) -> int:
+        if not heights or len(heights) == 0:
+            return 0
+
         left, right = 0, len(heights) - 1
-        ans = 0
+        max_area = 0
         while left < right:
-            h = min(heights[left], heights[right])
-            ans = max(ans, h * (right - left))
-            if heights[left] < heights[right]:
+            curr_area = (right - left) * min(heights[left], heights[right])
+            max_area = max(max_area, curr_area)
+            if heights[left] <= heights[right]:
                 left += 1
             else:
                 right -= 1
 
-        return ans
+        return max_area
+
+
 # @lc code=end
 

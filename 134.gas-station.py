@@ -79,6 +79,34 @@
 # @lc code=start
 class Solution:
     def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
-        
+        if not gas or not cost or len(gas) == 0 or len(cost) == 0 or len(gas) != len(cost):
+            return -1
+
+        start_points = []
+        l = len(gas)
+        for i in range(l):
+            if gas[i] >= cost[i]:
+                start_points.append(i)
+
+        for sp in start_points:
+            tmp_res = sp
+            curr_gas = 0
+            d = 0
+            while d < l:
+
+                # if the index is out of bound
+                # we can try using `%`
+                curr_gas += gas[sp % l]
+                curr_gas -= cost[sp % l]
+                sp += 1
+                d += 1
+                if curr_gas <= 0:
+                    break
+
+            if d == l and curr_gas >= 0:
+                return tmp_res
+        return -1
+
+
 # @lc code=end
 
