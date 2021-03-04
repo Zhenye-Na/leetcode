@@ -54,29 +54,39 @@
 #
 
 # @lc code=start
+
+from collections import deque
 class Solution:
+    def __init__(self):
+        self.directions = [[0,1],[1,0],[0,-1],[-1,0]]
+
+
     def solve(self, board: List[List[str]]) -> None:
         """
         Do not return anything, modify board in-place instead.
         """
-        queue = collections.deque([])
-        for r in range(len(board)):
-            for c in range(len(board[0])):
-                if (r in [0, len(board) - 1] or c in [0, len(board[0]) - 1]) and board[r][c] == "O":
-                    queue.append((r, c))
+        queue = deque([])
+        m, n = len(board), len(board[0])
+        for i in range(m):
+            for j in range(n):
+                if board[i][j] == "O" and (i == 0 or i == m - 1 or j == 0 or j == n - 1):
+                    queue.append((i, j))
 
         while queue:
-            r, c = queue.popleft()
-            if 0 <= r < len(board) and 0 <= c < len(board[0]) and board[r][c] == "O":
-                board[r][c] = "D"
-                queue.append((r - 1, c)); queue.append((r + 1, c))
-                queue.append((r, c - 1)); queue.append((r, c + 1))
-            
-        for r in range(len(board)):
-            for c in range(len(board[0])):
-                if board[r][c] == "O":
-                    board[r][c] = "X"
-                elif board[r][c] == "D":
-                    board[r][c] = "O"
+            x, y = queue.popleft()
+            if 0 <= x < m and 0 <= y < n and board[x][y] == "O":
+                board[x][y] = "Y"
+                for d in self.directions:
+                    next_x, next_y = x + d[0], y + d[1]
+                    queue.append((next_x, next_y))
+
+        for i in range(m):
+            for j in range(n):
+                if board[i][j] == "O":
+                    board[i][j] = "X"
+                if board[i][j] == "Y":
+                    board[i][j] = "O"
+
+
 # @lc code=end
 

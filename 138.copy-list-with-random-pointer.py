@@ -61,26 +61,27 @@ class Solution:
             return None
 
         # get all the nodes
-        nodeList = self.getNodes(head)
-        clone = {}
-        for node in nodeList:
-            clone[node] = Node(node.val, None, None)
-
-        # copy `next` pointer
-        for node in nodeList:
-            clone[node].next = clone[node.next] if node.next else None
-
-        # copy `random` pointer
-        for node in nodeList:
-            clone[node].random = clone[node.random] if node.random else None
-
-        return clone[head]
-
-    def getNodes(self, head):
         nodes = []
-        while head is not None:
-            nodes.append(head)
-            head = head.next
+        curr = head
+        while curr is not None:
+            nodes.append(curr)
+            curr = curr.next
 
-        return nodes
+        # clone all the nodes
+        node_map = {}
+        for node in nodes:
+            node_map[node] = Node(node.val)
+
+        # clone all the next/random pointers
+        tmp = head
+        while tmp is not None:
+            if tmp.next is not None:
+                node_map[tmp].next = node_map[tmp.next]
+            if tmp.random is not None:
+                node_map[tmp].random = node_map[tmp.random]
+            tmp = tmp.next
+
+        return node_map[head]
+
+
 # @lc code=end
