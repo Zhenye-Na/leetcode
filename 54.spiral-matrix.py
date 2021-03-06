@@ -42,38 +42,34 @@
 
 # @lc code=start
 class Solution:
+    def __init__(self):
+        self.directions = [[0, 1], [1, 0], [0, -1], [-1, 0]]
+
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
         if not matrix or len(matrix) == 0 or len(matrix[0]) == 0:
             return []
 
-        history = [[False] * len(matrix[0]) for _ in range(len(matrix))]
-        x, y = 0, 0
-
-        directions = {
-            0: [0, 1],
-            1: [1, 0],
-            2: [0, -1],
-            3: [-1, 0],
-        }
-
-        r, c = len(matrix), len(matrix[0])
+        seen = set([])
         res = []
-        d = 0
-        for _ in range(r * c):
-            res.append(matrix[x][y])
-            history[x][y] = True
+        batch = 0
+        m, n = len(matrix), len(matrix[0])
+        i, j = 0, 0
+        for _ in range(m * n):
+            res.append(matrix[i][j])
+            seen.add((i, j))
+            next_i, next_j = i + self.directions[batch % 4][0], j + self.directions[batch % 4][1]
 
-            nx = x + directions[d][0]
-            ny = y + directions[d][1]
+            if not self._is_valid(next_i, next_j, m, n, seen):
+                batch += 1
+                next_i, next_j = i + self.directions[batch % 4][0], j + self.directions[batch % 4][1]
 
-            if not ( 0 <= nx < r and 0 <= ny < c and not history[nx][ny] ):
-                d = (d + 1) % 4
-
-                nx = x + directions[d][0]
-                ny = y + directions[d][1]
-
-            x, y = nx, ny
+            i, j = next_i, next_j
 
         return res
+
+    def _is_valid(self, x, y, m, n, seen):
+        return 0 <= x < m and 0 <= y < n and (x, y) not in seen
+
+
 # @lc code=end
 
