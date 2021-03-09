@@ -36,6 +36,31 @@
 # @lc code=start
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        # state: f[i]
+        start, end, max_len = 0, 0, 0
+        for i in range(len(s)):
+            len1 = self._find_palindrome(s, i, i) # racecar
+            len2 = self._find_palindrome(s, i, i + 1) # abba
+            curr_max = max(len1, len2)
+
+            if curr_max > max_len:
+                start = i - (curr_max - 1) // 2
+                end = i + curr_max // 2
+                max_len = curr_max
+
+
+        return s[start:end + 1]
+
+
+    def _find_palindrome(self, s, left, right):
+        if not s or len(s) < 1 or left > right:
+            return 0
+
+        while left >= 0 and right < len(s) and s[left] == s[right]:
+            left -= 1
+            right += 1
+        
+        return right - 1 - (left + 1) + 1
+
+
 # @lc code=end
 

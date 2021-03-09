@@ -12,7 +12,7 @@
 # Total Accepted:    269.5K
 # Total Submissions: 669.5K
 # Testcase Example:  '["WordDictionary","addWord","addWord","addWord","search","search","search","search"]\n' +
-  '[[],["bad"],["dad"],["mad"],["pad"],["bad"],[".ad"],["b.."]]'
+#  '[[],["bad"],["dad"],["mad"],["pad"],["bad"],[".ad"],["b.."]]'
 #
 # Design a data structure that supports adding new words and finding if a
 # string matches any previously added string.
