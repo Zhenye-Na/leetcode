@@ -2,6 +2,38 @@
 
 #   https://aonecode.com/amazon-online-assessment-storage-optimization
 
+
+# Intuitive Solution
+# O(mn) Time
+
+def storage_opt(n, m, h, v):
+    return get_max(n + 1, h) * get_max(m + 1, v)
+
+
+def get_max(length, bars):
+    separators = set([])
+    for i in range(1, length):
+        separators.add(i)
+
+    for i in bars:
+        separators.remove(i)
+
+    if separators < 1:
+        return length
+
+    max_length = separators[0]
+    for i in range(1, len(separators)):
+        max_length = max(max_length, separators[i] - separators[i - 1])
+
+    max_length = max(max_length, length - separators[-1])
+
+    return max_length
+
+
+
+
+# Union Find Solution -> Time Limit Exceeded
+
 # Time Complexity:
 #   - O(mn) to create UnionFind object
 #   - O(hm) to union column cells
