@@ -67,8 +67,9 @@
 # @lc code=start
 
 # Dynamic Programming
-# O(mn) to preprocess
-# O(1) to query
+#   O(mn) to preprocess
+#   O(1) to query
+#   https://www.youtube.com/watch?v=MSNSqU3BnXk&ab_channel=HuaHua
 class NumMatrix:
 
     def __init__(self, matrix: List[List[int]]):
