@@ -68,7 +68,20 @@
 
 # @lc code=start
 class Solution:
+    def __init__(self):
+        self.operands = ["+", "-", "*", "/"]
+
     def evalRPN(self, tokens: List[str]) -> int:
-        
+        stack = []
+        for idx, token in enumerate(tokens):
+            if token not in self.operands:
+                stack.append(token)
+            else:
+                right = stack.pop()
+                left = stack.pop()
+                tmp_res = int(eval(left + token + right))   # make sure eval() is used safely
+                stack.append(str(tmp_res))
+
+        return int(stack[-1])
 # @lc code=end
 
