@@ -29,9 +29,6 @@
 - [Partition Labels](https://leetcode.com/problems/partition-labels)
 - [Subtree with Maximum Average](https://leetcode.com/discuss/interview-question/349617)
 
-<details style="box-sizing: border-box; display: block; color: rgb(66, 66, 66); font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;"><summary style="box-sizing: border-box; display: list-item; touch-action: manipulation;">AMCAT Interface</summary></details>
-
-------
 
 ### Codility
 

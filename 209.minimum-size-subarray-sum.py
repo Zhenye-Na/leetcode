@@ -78,7 +78,5 @@ class Solution:
         if res == length and running_sum < target:
             return 0
         return res
-
-
 # @lc code=end
 

@@ -78,7 +78,5 @@ class Solution:
             unique_str.remove(s[i])
 
         return res
-
-
 # @lc code=end
 

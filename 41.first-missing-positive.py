@@ -43,6 +43,10 @@
 #
 
 # @lc code=start
+
+# resources
+#   https://www.youtube.com/watch?v=9SnkdYXNIzM&ab_channel=MichaelMuinos
+
 class Solution:
     def firstMissingPositive(self, nums: List[int]) -> int:
         if not nums or len(nums) == 0:
@@ -72,10 +76,5 @@ class Solution:
             if nums[i] > 0:
                 return i + 1
         return l + 1
-
-
 # @lc code=end
-
-# resources
-#   https://www.youtube.com/watch?v=9SnkdYXNIzM&ab_channel=MichaelMuinos
 
