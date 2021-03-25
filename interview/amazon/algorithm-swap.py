@@ -1,7 +1,6 @@
-Algorithm Swap
+# Algorithm Swap
 
-https://aonecode.com/amazon-online-assessment-algorithm-swap
-
+# https://aonecode.com/amazon-online-assessment-algorithm-swap
 
 
 class AlgorithmSwap:
