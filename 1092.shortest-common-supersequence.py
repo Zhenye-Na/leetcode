@@ -49,68 +49,61 @@
 
 # @lc code=start
 
-class Solution(object):
-    def shortestCommonSupersequence(self, str1, str2):
+class Solution:
+    def shortestCommonSupersequence(self, str1: str, str2: str) -> str:
         """
         :type str1: str
         :type str2: str
         :rtype: str
         """
-        m = len(str1) 
-        n = len(str2) 
-        dp = [[0] * (n + 2) for i in range(m + 2)] 
-        self.lcs(str1, str2, m, n, dp) 
+        if not str1 or not str2 or len(str1) == 0 or len(str2) == 0:
+            return ""
 
-        result = []
-        index = dp[m][n]
-        i, j = m, n
+        # dp initialization
+        # f[i][j] represents the SCS of str1[:i] and str2[:j]
+        l1, l2 = len(str1), len(str2)
+        str1 = "#" + str1
+        str2 = "#" + str2
+        f = [[0 for _ in range(l2 + 1)] for _ in range(l1 + 1)]
+
+        for i in range(1, l1 +1):
+            f[i][0] = i
+
+        for j in range(1, l2 +1):
+            f[0][j] = j
+
+        for i in range(1, l1 + 1):
+            for j in range(1, l2 + 1):
+                if str1[i] == str2[j]:
+                    f[i][j] = f[i - 1][j - 1] + 1
+                else:
+                    f[i][j] = min(
+                        f[i][j - 1] + 1,
+                        f[i - 1][j] + 1
+                    )
+
+        res = ""
+        i, j = l1, l2
         while i > 0 and j > 0:
-            if str1[i - 1] == str2[j - 1]:
-                result.append(str1[i - 1])
-  
+            if str1[i] == str2[j]:
+                res += str1[i]
                 i -= 1
                 j -= 1
-                index -= 1
-        
-            elif dp[i - 1][j] > dp[i][j - 1]:
-                result.append(str2[j - 1])
-                
+            elif f[i][j] == f[i][j - 1] + 1:
+                res += str2[j]
                 j -= 1
-                index -= 1
-
-            else:
-                result.append(str1[i - 1])
-                
+            elif f[i][j] == f[i - 1][j] + 1:
+                res += str1[i]
                 i -= 1
-                index -= 1
 
         while i > 0:
-            result.append(str1[i - 1])
+            res += str1[i]
             i -= 1
-            index -= 1
 
         while j > 0:
-            result.append(str2[j - 1])
+            res += str2[j]
             j -= 1
-            index -= 1
-                
-        return "".join(result[::-1])
 
-    def lcs(self, X, Y, m, n, dp): 
-
-        for i in range(m + 1): 
-
-            for j in range(n + 1): 
-
-                if i == 0:
-                    dp[i][j] = j
-                elif j == 0: 
-                    dp[i][j] = i
-                elif X[i - 1] == Y[j - 1]:
-
-                    dp[i][j] = 1 + dp[i - 1][j - 1]
-                else:
-
-                    dp[i][j] = 1 + min(dp[i - 1][j], dp[i][j - 1])
+        return res[::-1]
 # @lc code=end
 
