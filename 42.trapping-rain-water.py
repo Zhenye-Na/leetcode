@@ -48,6 +48,29 @@
 # @lc code=start
 class Solution:
     def trap(self, heights: List[int]) -> int:
+        f = [0]
+        b = [0]
+        res = 0
+        n = len(heights)
+
+        for i in range(1, n):
+            curr_max = max(f[-1], heights[i - 1])
+            f.append(curr_max)
+
+        for j in range(n - 1 - 1, -1, -1):
+            curr_max = max(b[-1], heights[j + 1])
+            b.append(curr_max)
+
+        for i in range(n):
+            curr_water = min(f[i], b[n - i - 1]) - heights[i]
+            curr_water = curr_water if curr_water > 0 else 0
+            res += curr_water
+
+        return res
+
+
+class Solution_TwoPointers:
+    def trap(self, heights: List[int]) -> int:
         if not heights or len(heights) == 0:
             return 0
 
@@ -65,7 +88,5 @@ class Solution:
                 right -= 1
 
         return water
-
-
 # @lc code=end
 

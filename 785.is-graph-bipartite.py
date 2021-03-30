@@ -67,32 +67,87 @@
 # @lc code=start
 from collections import deque
 
-class Solution:
+class Solution_BFS:
     def isBipartite(self, graph: List[List[int]]) -> bool:
         if not graph or len(graph) == 0:
-            return False
+            return True
 
         n = len(graph)
         visited = [0 for _ in range(n)]
         color = [0 for _ in range(n)]
 
         for i in range(n):
-            if len(graph[i]) > 0 and visited[i] == 0:
-                visited[i] = 1
-                color[i] = 1
+            if visited[i] == 0 and len(graph[i]) >= 1:
                 queue = deque([i])
+                colors[i] = 1
 
-                while queue:
-                    node = queue.popleft()
-                    for neighbor in graph[node]:
-                        if visited[neighbor]:
-                            if color[node] == color[neighbor]:
-                                return False
-                        else:
-                            visited[neighbor] = 1
-                            color[neighbor] = - color[node]
-                            queue.append(neighbor)
+            while queue:
+                node = queue.popleft()
+                neighbors = graph[node]
+                
+                for neighbor in neighbors:
+                    if visited[neighbor] == 1:
+                        if colors[neighbor] == colors[node]:
+                            return False
+                    else:
+                        colors[neighbor] = - colors[node]
+                        queue.append(neighbor)
+                        visited[neighbor] = 1
 
         return True
+
+
+
+class UnionFind:
+
+    def __init__(self, n):
+        self.leader = {}
+        for i in range(n):
+            self.leader[i] = i
+
+    def find(self, a):
+        path = []
+        while a != self.leader[a]:
+            path.append(a)
+            a = self.leader[a]
+
+        for node in path:
+            self.leader[node] = a
+
+        return a
+
+
+    def union(self, a, b):
+        leader_a, leader_b = self.find(a), self.find(b)
+        if leader_a != leader_b:
+            self.leader[leader_a] = leader_b
+
+
+class Solution_UnionFind:
+    def isBipartite(self, graph: List[List[int]]) -> bool:
+        if not graph or len(graph) == 0:
+            return True
+
+        n = len(graph)
+        uf = UnionFind(n)
+
+        for i in range(n):
+            if len(graph[i]) <= 0:
+                continue
+
+            leader_i, leader_child = uf.find(i), uf.find(graph[i][0])
+            if leader_i == leader_child:
+                return False
+
+            # union neighbors
+            for j in range(1, len(graph[i])):
+                leader_j = uf.find(graph[i][j])
+                if leader_j == leader_i:
+                    return False
+
+                uf.union(leader_child, graph[i][j])
+
+        return True
+
 # @lc code=end
 

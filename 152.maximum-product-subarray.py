@@ -66,5 +66,32 @@ class Solution:
             res = max(res, curr_max)
 
         return res
+
+
+    def get_max_prod_subarry(self, nums):
+        total_max, total_min = 1, 1
+        curr_max, curr_min = 1, 1
+        start_max, end_max = 0, 0
+        start_single_max = 0
+
+        n = len(nums)
+        for i, num in enumerate(nums):
+            choices = sorted([(curr_max * num, 1), (curr_min * num, 2), (num, 3)], key=lambda x: x[0])
+            curr_max = choices[-1][0]
+            if choices[-1][1] == 3:
+                # num itself is the largest
+                start_single_max = i
+
+            curr_min = choices[0][0]
+
+            if total_max < curr_max:
+                total_max = curr_max
+                start_max = start_single_max
+                end_max = i
+            if total_min > curr_min:
+                total_min = curr_min
+
+        return nums[start_max:end_max + 1]
+
 # @lc code=end
 

@@ -66,9 +66,11 @@
 from collections import deque, defaultdict
 
 class Solution:
+
     def __init__(self):
         self.distance = {}
         self.neighbors = {}
+
 
     def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
         path = []
@@ -77,6 +79,7 @@ class Solution:
 
         self.dfs(path, endWord, [], beginWord)
         return path
+
 
     def dfs(self, result, end, curr_path, curr_word):
         if curr_word == end:
@@ -90,13 +93,12 @@ class Solution:
                 curr_path.pop()
 
 
-
     def find_ladder_length(self, beginWord, endWord, wordList):
         if not beginWord or len(beginWord) == 0 or \
             not endWord or len(endWord) == 0 or \
             not wordList or len(wordList) == 0 or \
             len(beginWord) != len(endWord):
-            return 0
+            return False
 
 
         wordList = set(wordList)

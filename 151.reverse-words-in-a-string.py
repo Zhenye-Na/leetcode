@@ -95,5 +95,36 @@ class Solution:
 
         new_s = ' '.join(s_list)
         return new_s[::-1]
+
+
+class Solution_Swap:
+    def reverseWords(self, s: str) -> str:
+        if not s or len(s) == 0:
+            return s
+        
+        s = s.lstrip().rstrip()
+        s = re.sub(' +', ' ', s)
+        s = [char for char in s] + [" "]
+        n = len(s)
+
+        i, j = 0, 0
+        while i < n and j <= n:
+            while i < n and s[i] == " ":
+                i += 1
+            j = i + 1
+            while j <= n and s[j] != " ":
+                j += 1
+
+            # swap s[i:j]
+            if i < n and j <= n:
+                left, right = i, j - 1
+                while left <= right:
+                    s[left], s[right] = s[right], s[left]
+                    left += 1
+                    right -= 1
+
+            i = j
+
+        return "".join(s[::-1]).lstrip()
 # @lc code=end
 
