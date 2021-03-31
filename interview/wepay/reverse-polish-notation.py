@@ -2,8 +2,7 @@
 Reverse Polish Notation
 
 input可以是double，返回也是double，然后不保证input valid。
-需要自己写error handling。然后followup问如果有很多别的运算符，类似根号啥的， 怎么办？提示用class
-于是我当时的答案是造一个Operation类，里面有个calculate方法，每个运算符extends这个类，然后override这个calculate方法
+需要自己写error handling。然后followup问如果有很多别的运算符，类似根号啥的
 """
 
 import math
