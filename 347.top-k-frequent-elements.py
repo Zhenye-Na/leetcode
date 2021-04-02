@@ -69,6 +69,26 @@ class Solution:
             res.append(heappop(heap)[1])
         return res
 
+
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        if not nums or len(nums) == 0:
+            return []
+
+        freq = Counter(nums)
+        heap = []
+
+        for num in freq:
+            if len(heap) < k:
+                heappush(heap, (freq[num], num))
+            else:
+                if freq[num] > heap[0][0]:
+                    heapreplace(heap, (freq[num], num))
+
+        # size of heap will be k
+        res = [pair[1] for pair in heap]
+        return res
 # @lc code=end
 
 

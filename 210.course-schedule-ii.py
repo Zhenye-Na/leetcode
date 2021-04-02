@@ -105,7 +105,5 @@ class Solution:
 
         for second, first in prerequisites:
             self.indgree[second] += 1
-
-
 # @lc code=end
 
