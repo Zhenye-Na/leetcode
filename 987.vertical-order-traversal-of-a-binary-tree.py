@@ -87,14 +87,14 @@ from collections import defaultdict
 
 class Solution:
     def verticalTraversal(self, root: TreeNode) -> List[List[int]]:
-        vals = collections.defaultdict(lambda: collections.defaultdict(list))
-        def dfs(node, x, y):
-            if node: 
-                vals[x][y].append(node.val)
-                dfs(node.left, x - 1, y + 1)
-                dfs(node.right, x + 1, y + 1)
+        self.vals = collections.defaultdict(lambda: collections.defaultdict(list))
+        self.dfs(root, 0, 0)
+        return [[v for y in sorted(self.vals[x]) for v in sorted(self.vals[x][y])] for x in sorted(self.vals)]
 
-        dfs(root, 0, 0)
-        return [[v for y in sorted(vals[x]) for v in sorted(vals[x][y])] for x in sorted(vals)] 
+    def dfs(self, node, x, y):
+        if node: 
+            self.vals[x][y].append(node.val)
+            self.dfs(node.left, x - 1, y + 1)
+            self.dfs(node.right, x + 1, y + 1)
 # @lc code=end
 

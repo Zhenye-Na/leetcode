@@ -54,20 +54,23 @@
 class Solution:
 
     def longestValidParentheses(self, s: str) -> int:
+        if not s or len(s) == 0:
+            return 0
+
         stack = []
-        res = 0
+        length = 0
 
         for i, char in enumerate(s):
             if char == "(":
                 stack.append(i)
+
             else:
-                if stack and s[stack[-1]] == '(':
+                if stack and s[stack[-1]] == "(":
                     stack.pop()
-                    res = max(res, i - (stack[-1] if stack else -1))
+                    length = max(length, i - (stack[-1] if stack else -1))
                 else:
                     stack.append(i)
 
-        return res
-
+        return length
 # @lc code=end
 
