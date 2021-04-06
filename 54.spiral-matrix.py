@@ -69,7 +69,5 @@ class Solution:
 
     def _is_valid(self, x, y, m, n, seen):
         return 0 <= x < m and 0 <= y < n and (x, y) not in seen
-
-
 # @lc code=end
 

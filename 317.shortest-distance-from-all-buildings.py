@@ -93,10 +93,7 @@ class Solution:
                             queue.append((next_x, next_y))
                             visited.add((next_x, next_y))
                 distance += 1
-            # print("current building:", building)
-            # print(dict(self.min_dist))
-            # print(dict(self.reachable_count))
-            # print("==============================================================")
+
         min_distance = sys.maxsize
         for cordinate in self.reachable_count:
             if self.reachable_count[cordinate] == len(buildings):

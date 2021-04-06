@@ -61,9 +61,29 @@
 
 class Solution:
     def kthSmallest(self, root: TreeNode, k: int) -> int:
+        stack = []
+        curr = root
+        while curr:
+            stack.append(curr)
+            curr = curr.left
+
+        for _ in range(k - 1):
+            node = stack.pop()
+            if node.right:
+                node = node.right
+                while node:
+                    stack.append(node)
+                    node = node.left
+
+        return stack[-1].val
+
+
+class Solution_QuickSelect:
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
         self.numChildren = {}
         self._count_children(root)
         return self.quick_select_K(root, k)
+
 
     def _count_children(self, root):
         if root is None:
@@ -74,6 +94,7 @@ class Solution:
 
         self.numChildren[root] = left + right + 1
         return left + right + 1
+
 
     def quick_select_K(self, root, k):
         if root is None:
