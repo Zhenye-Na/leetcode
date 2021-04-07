@@ -53,7 +53,6 @@
 #
 
 # @lc code=start
-import sys
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         if not nums or len(nums) == 0:
@@ -68,5 +67,55 @@ class Solution:
             running_min = min(prefix_sum, running_min)
 
         return running_max
+
+
+    def get_max_subarray(self, nums):
+        """
+        Kadane's Algorithm
+        """
+        positive = False
+        for num in nums:
+            if num > 0:
+                positive = True
+
+        if not positive:
+            return [max(nums)]
+
+        total_max = 0
+        running_max = 0
+
+        start_over = 0
+        start, end = 0, 0
+
+        for i, num in enumerate(nums):
+            running_max += num
+
+            if running_max < 0:
+                running_max = 0
+                start_over = i + 1
+        
+            if running_max > total_max:
+                total_max = running_max
+                start = start_over
+                end = i
+
+        return nums[start: end + 1]
+
+
+    def max_subarray(self, nums):
+        """
+        Kadane's Algorithm
+
+        requires at least one positive number
+        """
+        total_max = 0
+        running_max = 0
+        for num in nums:
+            running_max += num
+            running_max = max(running_max, 0)
+
+            total_max = max(total_max, running_max)
+
+        return total_max
 # @lc code=end
 

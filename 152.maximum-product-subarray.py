@@ -78,11 +78,11 @@ class Solution:
         for i, num in enumerate(nums):
             choices = sorted([(curr_max * num, 1), (curr_min * num, 2), (num, 3)], key=lambda x: x[0])
             curr_max = choices[-1][0]
+            curr_min = choices[0][0]
+
             if choices[-1][1] == 3:
                 # num itself is the largest
                 start_single_max = i
-
-            curr_min = choices[0][0]
 
             if total_max < curr_max:
                 total_max = curr_max
@@ -92,6 +92,5 @@ class Solution:
                 total_min = curr_min
 
         return nums[start_max:end_max + 1]
-
 # @lc code=end
 

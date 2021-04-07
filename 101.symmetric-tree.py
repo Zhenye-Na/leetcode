@@ -50,7 +50,6 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-from collections import deque
 class Solution_DFS:
     def isSymmetric(self, root: TreeNode) -> bool:
         if not root:
@@ -77,51 +76,41 @@ class Solution_DFS:
 
 
 
+from collections import deque
+
 class Solution_BFS:
     def isSymmetric(self, root: TreeNode) -> bool:
-        # Iteratively
+        depth = self.get_depth(root)
         queue = deque([root])
-        while queue:
-            is_sym, end_flag = self._check_symmetric(list(queue)):
-            if not is_sym:
-                return False
-            if end_flag:
-                break
+        curr_depth = 0
+
+        while queue and curr_depth < depth:
             size = len(queue)
+            level = []
             for _ in range(size):
                 node = queue.popleft()
-                if node:
+                if node is None:
+                    level.append(".")
+                else:
+                    level.append(str(node.val))
                     queue.append(node.left)
                     queue.append(node.right)
-                else:
-                    queue.append(None)
-                    queue.append(None)
+
+            if level != level[::-1]:
+                return False
+
+            curr_depth += 1
 
         return True
 
 
-    def _check_symmetric(self, node_lst):
-        end_flag = True
-        for node in node_list:
-            if node is not None:
-                end_flag = False
-                break
-
-        left, right = 0, len(node_lst) - 1
-        while left <= right:
-            if node_lst[left] is None and node_lst[right] is not None:
-                return False, end_flag
-
-            if node_lst[left] is not None and node_lst[right] is None:
-                return False, end_flag
-
-            if node_lst[left] is not None and \
-                node_lst[right] is not None and \
-                node_lst[left].val != node_lst[right].val:
-                return False, end_flag
-
-            left += 1
-            right -= 1
-        return True, end_flag
+    def get_depth(self, root):
+        if not root:
+            return 0
+        
+        left = self.get_depth(root.left)
+        right = self.get_depth(root.right)
+        
+        return max(left, right) + 1
 # @lc code=end
 

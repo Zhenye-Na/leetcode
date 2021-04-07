@@ -42,6 +42,7 @@
 
 # @lc code=start
 from collections import Counter
+
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         if not s or not t:
@@ -56,18 +57,16 @@ class Solution:
 
         for i in range(len(s)):
             while j < len(s) and counter_letter < num_letter:
-                # print(j, s[j])
                 counter_s[s[j]] = counter_s.get(s[j], 0) + 1
                 if s[j] in counter_t and counter_s[s[j]] == counter_t[s[j]]:
                     # we have collected all the occurences of this letter
                     counter_letter += 1
             
                 j += 1
-            
+
             if num_letter == counter_letter:
                 # we have collected all
                 if j - i < min_len:
-                    
                     res = s[i:j]
                     min_len = j - i
 
