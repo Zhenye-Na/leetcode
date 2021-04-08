@@ -47,7 +47,6 @@ class Solution:
                 end = i + curr_max // 2
                 max_len = curr_max
 
-
         return s[start:end + 1]
 
 
@@ -60,7 +59,5 @@ class Solution:
             right += 1
         
         return right - 1 - (left + 1) + 1
-
-
 # @lc code=end
 
