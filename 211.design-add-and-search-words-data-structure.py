@@ -77,6 +77,7 @@ class WordDictionary:
         """
         self.root = TrieNode()
 
+
     def addWord(self, word: str) -> None:
         node = self.root
         for char in word:
@@ -86,8 +87,10 @@ class WordDictionary:
 
         node.is_word = True
 
+
     def search(self, word: str) -> bool:
         return self._find(self.root, word, 0)
+
 
     def _find(self, node, word, start_index):
         if node is None:
@@ -105,6 +108,7 @@ class WordDictionary:
                 return True
 
         return False
+
 
 # Your WordDictionary object will be instantiated and called as such:
 # obj = WordDictionary()
