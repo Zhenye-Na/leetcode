@@ -8,13 +8,6 @@ entries:
       - title: github repo
         url: https://github.com/riggraz/no-style-please
 
-  - title: all posts
-    post_list:
-      limit: 5
-      show_more: true
-      show_more_text: See archive...
-      show_more_url: archive.html
-
   - title: Binary Search
     post_list:
       category: binary-search
@@ -35,3 +28,10 @@ entries:
       show_more: true
       show_more_text: See more problems ...
       show_more_url: dfs.html
+
+  - title: Two Pointers
+    post_list:
+      category: two-pointers
+      show_more: true
+      show_more_text: See more problems ...
+      show_more_url: two-pointers.html
