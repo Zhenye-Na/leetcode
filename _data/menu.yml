@@ -6,7 +6,7 @@ entries:
     entries:
       - title: my leetcode problem solutions with explanation
       - title: github repo
-        url: https://github.com/riggraz/no-style-please
+        url: https://github.com/Zhenye-Na/leetcode
 
   - title: Binary Search
     post_list:
