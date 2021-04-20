@@ -1,0 +1,38 @@
+# For documentation on this file, see:
+# https://github.com/riggraz/no-style-please#customize-the-menu
+
+entries:
+  - title: info
+    entries:
+      - title: a (nearly) no-CSS, fast, minimalist Jekyll theme.
+      - title: github repo
+        url: https://github.com/riggraz/no-style-please
+      - title: "used by <a href='https://riggraz.dev'>riggraz.dev</a> and <a href='https://github.com/riggraz/no-style-please/network/dependents'>many others</a>"
+
+  - title: all posts
+    post_list:
+      limit: 5
+      show_more: true
+      show_more_text: See archive...
+      show_more_url: archive.html
+
+  - title: Binary Search
+    post_list:
+      category: binary-search
+      show_more: true
+      show_more_text: See more posts...
+      show_more_url: binary-search.html
+
+  - title: BFS
+    post_list:
+      category: bfs
+      show_more: true
+      show_more_text: See more problems ...
+      show_more_url: bfs.html
+
+  - title: DFS
+    post_list:
+      category: dfs
+      show_more: true
+      show_more_text: See more problems ...
+      show_more_url: dfs.html
