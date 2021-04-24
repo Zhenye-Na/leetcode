@@ -43,7 +43,7 @@ for each edge in the list:
 * You can use DFS or BFS to traverse in the graph
 * You can use Union Find to contruct in every loop
 
-Overall Time Complexity will be `O(n^2)`
+Overall Time Complexity will be O(n^2)
 
 ## Tarjan's Algorithm
 
@@ -56,8 +56,6 @@ Tarjan's Algorithm uses DFS to traverse all the nodes in the graph, during trave
 1. DFS to traverse all the nodes (trivial)
 2. when traverse to a node, we need to update the distance/step/Id from its parent node
     1. for DFS, we return the smallest distance/step/Id of all the child node that current node can reach out to, except the parent node of current node
-
-
 
 ## Code Implementation
 
