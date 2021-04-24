@@ -49,7 +49,7 @@ Overall Time Complexity will be `O(n^2)`
 
 Before introducing what is Tarjan's Algorithm, let's explain some of the terms beforehand.
 
-* SCC: Strongly Connected Component, a graph is said to be strongly connected if every vertex is reachable from every other vertex. For example, since Tarjan's Algorithm works for Directed Graph too, if `A -> B` and` B -> A`, then `AB` is a SCC
+* SCC: Strongly Connected Component, a graph is said to be strongly connected if every vertex is reachable from every other vertex. For example, since Tarjan's Algorithm works for Directed Graph too, if `A -> B` and `B -> A`, then `AB` is a SCC
 
 Tarjan's Algorithm uses DFS to traverse all the nodes in the graph, during traverse we need to do two things:
 
