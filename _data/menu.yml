@@ -35,3 +35,10 @@ entries:
       show_more: true
       show_more_text: See more problems ...
       show_more_url: two-pointers.html
+
+  - title: Graph
+    post_list:
+      category: graph
+      show_more: true
+      show_more_text: See more problems ...
+      show_more_url: graph.html
