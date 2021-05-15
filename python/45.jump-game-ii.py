@@ -65,6 +65,5 @@ class Solution:
                     steps[i] = min(steps[i], steps[j] + 1)
 
         return steps[-1]
-
 # @lc code=end
 
