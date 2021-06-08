@@ -65,12 +65,7 @@ class Solution:
             return None
 
         root = TreeNode(preorder[pre_start])
-
-        in_index = 0
-        for i in range(in_start, in_end + 1):
-            if inorder[i] == preorder[pre_start]:
-                in_index = i
-                break
+        in_index = inorder.index(preorder[pre_start])
 
         root.left = self.constructTree(pre_start + 1, in_start, in_index - 1, preorder, inorder)
         root.right = self.constructTree(pre_start + (in_index - in_start) + 1, in_index + 1, in_end, preorder, inorder)

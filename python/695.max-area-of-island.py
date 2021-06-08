@@ -46,35 +46,47 @@
 #
 
 # @lc code=start
-
 from collections import deque
 
 class Solution:
-    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
-        row, col = len(grid),len(grid[0])
-        queue = deque([])
-        max_area = 0
-        
-        if not grid or not grid[0]:
-            return 0 
-        
-        for x in range(row):
-            for y in range(col):
-                if grid[x][y]==1:
-                    grid[x][y]=2
-                    queue.append((x,y))
-                    max_area = max(max_area, self.bfs(queue, row, col, grid))
-        return max_area
+    
+    def __init__(self):
+        self.dx = [1, -1, 0, 0]
+        self.dy = [0, 0, -1, 1]
+        self.max_area = 0
 
-    def bfs(self, queue, row, col, grid):
-        cur_area = 1
+        self.ISLAND = 1
+        self.EMPTY = 0
+
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        if not grid or len(grid) == 0 or len(grid[0]) == 0:
+            return self.max_area
+
+        m, n = len(grid), len(grid[0])
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == self.ISLAND:
+                    self.max_area = max(
+                        self.max_area,
+                        self.bfs(i, j, grid)
+                    )
+        
+        return self.max_area
+
+
+    def bfs(self, x, y, grid):
+        queue = deque([(x, y)])
+        curr_area = 1
         while queue:
-            x,y = queue.popleft()
-            for nx, ny in [[x+1,y], [x-1,y], [x,y+1], [x,y-1]]:
-                if 0<=nx<row and 0<=ny<col and grid[nx][ny]==1:
-                    grid[nx][ny]=2
-                    cur_area+=1
-                    queue.append((nx,ny))
-        return cur_area
+            print(queue)
+            x, y = queue.popleft()
+            grid[x][y] == self.EMPTY
+            for d in range(4):
+                next_x, next_y = x + self.dx[d], y + self.dy[d]
+                if 0 <= next_x < len(grid) and 0 <= next_y < len(grid[0]) and grid[next_x][next_y] == self.ISLAND:
+                    curr_area += 1
+                    queue.append((next_x, next_y))
+
+        return curr_area
 # @lc code=end
 
