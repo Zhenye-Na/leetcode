@@ -53,7 +53,5 @@ class Solution:
 
         if left_count < right_count:
             self._dfs(left_count, right_count - 1, curr + ")", target_length)
-
-
 # @lc code=end
 
