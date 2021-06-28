@@ -94,10 +94,10 @@ class Solution_TLE:
     def removeDuplicates(self, s: str, k: int) -> str:
         if not s or len(s) == 0 or k == 0:
             return ""
-        
+
         stack = []
         l = len(s)
-        
+
         counter = defaultdict(int)
         for i in range(l):
 
@@ -113,11 +113,10 @@ class Solution_TLE:
                         del counter[s[i]]
                 else:
                     stack.append(s[i])
-                    
+
             else:
                 stack.append(s[i])
-        
-        
+
         return "".join(stack)
 # @lc code=end
 
