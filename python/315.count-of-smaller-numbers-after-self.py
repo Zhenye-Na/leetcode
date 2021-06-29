@@ -99,6 +99,5 @@ class Solution:
             return start + 1
 
         return 0
-
 # @lc code=end
 
