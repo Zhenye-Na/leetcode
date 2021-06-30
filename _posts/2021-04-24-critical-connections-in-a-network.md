@@ -115,8 +115,12 @@ class Solution:
             self.graph[v].add(u)
 ```
 
-* Time Complexity: O(n)
-* Space Complexity: O(n)
+### Complexity Analysis
+
+- Time Complexity
+    - O(n)
+- Space Complexity
+    - O(1)
 
 ## Resources
 
