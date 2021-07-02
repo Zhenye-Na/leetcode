@@ -8,6 +8,13 @@ entries:
       - title: github repo
         url: https://github.com/Zhenye-Na/leetcode
 
+  - title: Array
+    post_list:
+      category: array
+      show_more: true
+      show_more_text: See more posts...
+      show_more_url: array.html
+
   - title: Binary Search
     post_list:
       category: binary-search
