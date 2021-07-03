@@ -11,9 +11,10 @@ Given a sorted integer array arr, two integers k and x, return the k closest int
 
 An integer a is closer to x than an integer b if:
 
+```
 |a - x| < |b - x|, or
 |a - x| == |b - x| and a < b
- 
+```
 
 Example 1:
 
