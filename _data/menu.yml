@@ -49,3 +49,10 @@ entries:
       show_more: true
       show_more_text: See more problems ...
       show_more_url: graph.html
+
+  - title: Heap / Priority Queue
+    post_list:
+      category: heap
+      show_more: true
+      show_more_text: See more problems ...
+      show_more_url: heap.html

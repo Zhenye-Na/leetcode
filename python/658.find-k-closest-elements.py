@@ -53,23 +53,70 @@
 #
 
 # @lc code=start
-from heapq import heappush, heappop
+from heapq import heappush, heappop, heappushpop
 
-class Solution:
+class Solution_Heap:
     def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
-        if not arr or len(arr) == 0:
-            return sorted(arr)
+        if not arr or len(arr) < k:
+            return arr
+        
+        heap = []
+        for num in arr:
 
-        results = []
-        for point in arr:
-            if len(results) < k:
-                heappush(results, (- abs(point - x), point))
+            if len(heap) < k:
+                heappush(heap, (-abs(num - x), num))
             else:
-                if abs(point - x) < - results[0][0] or (
-                    abs(point - x) == - results[0][0] and point < results[0][1]):
-                    heappop(results)
-                    heappush(results, (- abs(point - x), point))
+                # there are k numbers in the heap
+                # pop and push if meet requirements
+                if -abs(num - x) > heap[0][0]:
+                    heappushpop(heap, (-abs(num - x), num))
 
-        return sorted([result[1] for result in results])
+        return sorted([ele[1] for ele in heap])
+
+
+import bisect
+class Solution_BinarySearch:
+    def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
+        if not arr or len(arr) < k:
+            return arr
+        
+        right = bisect.bisect_left(arr, x)
+
+        if right == 0:
+            return arr[:k]
+        if right == len(arr):
+            return arr[len(arr) - k:]
+
+        left = right - 1
+        res = []
+
+        while len(res) < k:
+            if left >= 0 and right < len(arr):
+                # this if else block could be optimized
+                # to remove redundancy
+                # but I dont wanna
+
+                # Ideally, just to make sure "right - left + 1 == k"
+                if abs(arr[left] - x) < abs(arr[right] - x):
+                    res.append(arr[left])
+                    left -= 1
+                elif abs(arr[left] - x) > abs(arr[right] - x):
+                    res.append(arr[right])
+                    right += 1
+                else:
+                    if arr[right] < arr[left]:
+                        res.append(arr[right])
+                        right += 1
+                    else:
+                        res.append(arr[left])
+                        left -= 1
+            elif left >= 0:
+                res.append(arr[left])
+                left -= 1
+            else:
+                res.append(arr[right])
+                right += 1
+
+        return sorted(res)
 # @lc code=end
 
