@@ -12,14 +12,14 @@ entries:
     post_list:
       category: array
       show_more: true
-      show_more_text: See more posts...
+      show_more_text: See more problems...
       show_more_url: array.html
 
   - title: Binary Search
     post_list:
       category: binary-search
       show_more: true
-      show_more_text: See more posts...
+      show_more_text: See more problems...
       show_more_url: binary-search.html
 
   - title: BFS
@@ -56,3 +56,10 @@ entries:
       show_more: true
       show_more_text: See more problems ...
       show_more_url: heap.html
+
+  - title: Dynamic Programming
+    post_list:
+      category: dp
+      show_more: true
+      show_more_text: See more problems ...
+      show_more_url: dp.html
