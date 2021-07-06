@@ -113,3 +113,10 @@ class Solution:
         res = sum(f[-1])
         return res % (10 ** 9 + 7)
 ```
+
+**Complexity Analysis**
+
+- Time Complexity
+  - O(n*5) = O(n) if n is much greater than 5
+- Space Complexity
+  - O(n*5) = O(n) if n is much greater than 5
