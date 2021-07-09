@@ -52,7 +52,7 @@
 #
 
 # @lc code=start
-from heapq import heappush, heappop, heappushpop, heapreplace
+from heapq import heappush, heappop
 
 class Solution:
     dx = [0, 1]
@@ -63,11 +63,11 @@ class Solution:
             return 0
 
         m, n = len(matrix), len(matrix[0])
-        heap = [(matrix[0][0],0,0)]
-        seen = set([(0,0)])
+        heap = [(matrix[0][0], 0, 0)]
+        seen = set([(0, 0)])
 
         for _ in range(k - 1):
-            value, x, y = heappop(heap)
+            _, x, y = heappop(heap)
             for i in range(2):
                 newx, newy = x + self.dx[i], y + self.dy[i]
                 if 0 <= newx < m and 0 <= newy < n and (newx, newy) not in seen:
@@ -75,6 +75,5 @@ class Solution:
                     seen.add((newx, newy))
 
         return heap[0][0]
-
 # @lc code=end
 
