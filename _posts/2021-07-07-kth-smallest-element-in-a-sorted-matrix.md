@@ -137,7 +137,7 @@ class PointComparator implements Comparator<Point> {
 **Complexity Analysis**
 
 - Time Complexity
-  - O(klogn) HashMap
+  - O(klogn)
 - Space Complexity
   - O(n)
 
