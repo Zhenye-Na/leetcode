@@ -1,3 +1,5 @@
+archived_posts/
+
 *.gem
 .bundle
 .jekyll-cache
