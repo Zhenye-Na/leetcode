@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "295. Find Median from Data Stream"
-category: heap
+title: "205. Isomorphic Strings"
+category: hashmap
 ---
 
 

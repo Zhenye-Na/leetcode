@@ -43,6 +43,13 @@ entries:
       show_more_text: See more problems ...
       show_more_url: two-pointers.html
 
+  - title: HashMap
+    post_list:
+      category: hashmap
+      show_more: true
+      show_more_text: See more problems ...
+      show_more_url: hashmap.html
+
   - title: Graph
     post_list:
       category: graph
