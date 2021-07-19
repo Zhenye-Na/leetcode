@@ -36,19 +36,12 @@ entries:
       show_more_text: See more problems ...
       show_more_url: dfs.html
 
-  - title: Two Pointers
+  - title: Dynamic Programming
     post_list:
-      category: two-pointers
+      category: dp
       show_more: true
       show_more_text: See more problems ...
-      show_more_url: two-pointers.html
-
-  - title: HashMap
-    post_list:
-      category: hashmap
-      show_more: true
-      show_more_text: See more problems ...
-      show_more_url: hashmap.html
+      show_more_url: dp.html
 
   - title: Graph
     post_list:
@@ -57,6 +50,13 @@ entries:
       show_more_text: See more problems ...
       show_more_url: graph.html
 
+  - title: HashMap
+    post_list:
+      category: hashmap
+      show_more: true
+      show_more_text: See more problems ...
+      show_more_url: hashmap.html
+
   - title: Heap / Priority Queue
     post_list:
       category: heap
@@ -64,9 +64,16 @@ entries:
       show_more_text: See more problems ...
       show_more_url: heap.html
 
-  - title: Dynamic Programming
+  - title: Linked List
     post_list:
-      category: dp
+      category: linked-list
       show_more: true
       show_more_text: See more problems ...
-      show_more_url: dp.html
+      show_more_url: linked-list.html
+
+  - title: Two Pointers
+    post_list:
+      category: two-pointers
+      show_more: true
+      show_more_text: See more problems ...
+      show_more_url: two-pointers.html
