@@ -69,20 +69,21 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        return self._dfs(root, p, q)
+        if not root or not p or not q:
+            return None
+
+        return self._findLCA(root, p, q)
 
 
-    def _dfs(self, root, p, q):
-        if not root or root == p or root == q:
+    def _findLCA(self, root, p, q):
+        if root == p or root == q:
             return root
 
-        if p.val < root.val and q.val < root.val:
-            lca = self._dfs(root.left, p, q)
-        elif p.val > root.val and q.val > root.val:
-            lca = self._dfs(root.right, p, q)
+        if root.val < p.val and root.val < q.val:
+            return self._findLCA(root.right, p, q)
+        elif root.val > p.val and root.val > q.val:
+            return self._findLCA(root.left, p, q)
         else:
             return root
-
-        return lca
 # @lc code=end
 
