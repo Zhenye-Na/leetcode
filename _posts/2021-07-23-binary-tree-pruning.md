@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "915. Partition Array into Disjoint Intervals"
+title: "814. Binary Tree Pruning"
 category: array
 ---
 
