@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "814. Binary Tree Pruning"
-category: array
+category: divide-and-conquer
 ---
 
 
