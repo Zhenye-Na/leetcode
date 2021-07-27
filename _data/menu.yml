@@ -36,6 +36,13 @@ entries:
       show_more_text: See more problems ...
       show_more_url: dfs.html
 
+  - title: Divide & Conquer
+    post_list:
+      category: divide-and-conquer
+      show_more: true
+      show_more_text: See more problems ...
+      show_more_url: divide-and-conquer.html
+
   - title: Dynamic Programming
     post_list:
       category: dp

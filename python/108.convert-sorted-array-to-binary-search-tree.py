@@ -55,7 +55,7 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution:
+class Solution_WithHelper:
     def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
         return self.create_bst(nums)
 
@@ -73,6 +73,24 @@ class Solution:
         root.left = left
         root.right = right
 
+        return root
+
+
+class Solution:
+    def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
+        if not nums or len(nums) == 0:
+            return None
+        
+        if len(nums) == 1:
+            return TreeNode(nums[0])
+        
+        n = len(nums)
+        root = TreeNode(nums[n // 2])
+        left = self.sortedArrayToBST(nums[: n// 2])
+        right = self.sortedArrayToBST(nums[n // 2 + 1:])
+        
+        root.left = left
+        root.right = right
         return root
 # @lc code=end
 
