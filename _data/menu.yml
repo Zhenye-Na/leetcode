@@ -78,6 +78,13 @@ entries:
       show_more_text: See more problems ...
       show_more_url: linked-list.html
 
+  - title: Trie / Prefix Tree
+    post_list:
+      category: trie
+      show_more: true
+      show_more_text: See more problems ...
+      show_more_url: trie.html
+
   - title: Two Pointers
     post_list:
       category: two-pointers
