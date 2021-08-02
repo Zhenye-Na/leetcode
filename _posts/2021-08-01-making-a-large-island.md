@@ -13,8 +13,6 @@ Return the size of the largest island in grid after applying this operation.
 
 An island is a 4-directionally connected group of 1s.
 
- 
-
 Example 1:
 
 ```
@@ -55,7 +53,9 @@ grid[i][j] is either 0 or 1.
 ```java
 class Solution {
 
-    private int[][] directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    // comment otherwise post cannot be published
+    // uncomment the following line for usage
+    // private int[][] directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
     public int largestIsland(int[][] grid) {
         if (grid == null || grid.length == 0) return 0;
