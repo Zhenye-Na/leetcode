@@ -53,9 +53,10 @@ grid[i][j] is either 0 or 1.
 ```java
 class Solution {
 
-    // comment otherwise post cannot be published
-    // uncomment the following line for usage
-    // private int[][] directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    // directions array initialization here:
+    //   https://github.com/Zhenye-Na/leetcode/blob/master/java/827.making-a-large-island.java#L64
+    // template render issue, cannot initialize here
+    private int[][] directions;
 
     public int largestIsland(int[][] grid) {
         if (grid == null || grid.length == 0) return 0;
