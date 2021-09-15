@@ -88,7 +88,7 @@ class Solution:
             return 0
         else:
             dp[1] = 1
- 
+
         for i in range(2, n):
             if s[i] == "0":
                 if s[i - 1] == "1" or s[i - 1] == "2":
