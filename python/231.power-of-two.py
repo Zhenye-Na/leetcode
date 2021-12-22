@@ -71,6 +71,9 @@
 # @lc code=start
 class Solution:
     def isPowerOfTwo(self, n: int) -> bool:
+        return n & (n - 1) == 0 if n >= 1 else False
+
+    def isPowerOfTwo2(self, n: int) -> bool:
         if n <= 0:
             return False
 
