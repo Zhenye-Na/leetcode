@@ -61,10 +61,31 @@
 #
 
 # @lc code=start
-from heapq import heappush, heappop
+from heapq import heappush, heappop, heapreplace
 
 class Solution:
-    def kClosest(self, points: List[List[int]], K: int) -> List[List[int]]:
+    def _compute_dist(self, point):
+        return point[0] ** 2 + point[1] ** 2
+
+
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        if not points or len(points) == 0 or k <= 0:
+            return []
+
+        heap = []
+        for point in points:
+
+            dist = self._compute_dist(point)
+            if len(heap) < k:
+                heappush(heap, (-dist, point))
+            else:
+                if dist < -heap[0][0]:
+                    heapreplace(heap, (-dist, point))
+
+        return [p for _, p in heap]
+
+
+    def kClosest2(self, points: List[List[int]], K: int) -> List[List[int]]:
         if not points or len(points) <= K:
             return points
 
