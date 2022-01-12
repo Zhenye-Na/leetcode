@@ -69,10 +69,10 @@
 # Memory Usage: 16.9 MB, less than 21.89% of Python3 online submissions for Insert into a Binary Search Tree.
 
 class Solution:
-    def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
+    def insertIntoBST_Iterative(self, root: TreeNode, val: int) -> TreeNode:
         if root is None:
             return TreeNode(val)
-        
+
         node = root
         flag = 0
         while node:   
@@ -94,5 +94,38 @@ class Solution:
             node.left = TreeNode(val)
 
         return root
+
+
+    def insertIntoBST_Recursive_1(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        if not root:
+            return TreeNode(val)
+
+        if val >= root.val:
+            root.right = self.insertIntoBST(root.right, val)
+
+        if val < root.val:
+            root.left = self.insertIntoBST(root.left, val)
+
+        return root
+
+    def insertIntoBST_Recursive_2(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        if not root:
+            return TreeNode(val)
+        self._insert(root, val)
+        return root
+
+
+    def _insert(self, root, val):
+        if val >= root.val:
+            if root.right:
+                return self._insert(root.right, val)
+            else:
+                root.right = TreeNode(val)
+        
+        if val < root.val:
+            if root.left:
+                return self._insert(root.left, val)
+            else:
+                root.left = TreeNode(val)
 # @lc code=end
 
