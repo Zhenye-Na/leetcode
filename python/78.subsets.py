@@ -61,7 +61,5 @@ class Solution:
             curr.append(nums[i])
             self._dfs(nums, curr, res, i + 1)
             curr.pop()
-
-
 # @lc code=end
 
