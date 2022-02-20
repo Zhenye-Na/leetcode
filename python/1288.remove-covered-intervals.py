@@ -89,5 +89,23 @@ class Solution:
                 left, right = intervals[i][0], intervals[i][1]
 
         return length - count
+
+
+    def removeCoveredIntervals_Solution2(self, intervals: List[List[int]]) -> int:
+        if not intervals or len(intervals) == 0:
+            return 0
+
+        intervals.sort(key=lambda x: (x[0], -x[1]))
+        res = []
+        for interval in intervals:
+            if not res:
+                res.append(interval)
+            else:
+                if interval[0] >= res[-1][0] and interval[1] <= res[-1][1]:
+                    continue
+                else:
+                    res.append(interval)
+
+        return len(res)
 # @lc code=end
 
