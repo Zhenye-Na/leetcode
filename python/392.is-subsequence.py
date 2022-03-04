@@ -62,5 +62,27 @@ class Solution:
             t_ += 1
 
         return False
+
+
+    def isSubsequence_DynamicProgramming(self, s: str, t: str) -> bool:
+        s = "#" + s
+        t = "#" + t
+
+        # state[i][j] = True represents that s[:i] is a subsequenceof t[:j]
+        ls, lt = len(s), len(t)
+        state = [[False for _ in range(lt)] for _ in range(ls)]
+        state[0][0] = True
+
+        for j in range(1, lt):
+            state[0][j] = True
+
+        for i in range(1, ls):
+            for j in range(1, lt):
+                if s[i] == t[j] and state[i - 1][j - 1]:
+                    state[i][j] = True
+                else:
+                    state[i][j] = state[i][j - 1]
+
+        return state[-1][-1]
 # @lc code=end
 
