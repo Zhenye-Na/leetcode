@@ -40,6 +40,24 @@
 # @lc code=start
 class Solution:
     def partitionLabels(self, S: str) -> List[int]:
-        
+        last_occurences = {}
+        for i in range(len(s)):
+            last_occurences[s[i]] = i
+
+        res = []
+        i = 0
+        while i < len(s):
+            left = i
+            right = last_occurences[s[i]]
+
+            ptr = i + 1
+            while ptr < right:
+                right = max(right, last_occurences[s[ptr]])
+                ptr += 1
+
+            res.append(right - left + 1)
+            i = right + 1
+
+        return res
 # @lc code=end
 
