@@ -63,7 +63,7 @@ class Solution:
         if i <= 0:
             nums.sort()
             return
-        
+
         pivot = nums[i - 1]
         j = len(nums) - 1
         while j > i and nums[j] <= pivot:
