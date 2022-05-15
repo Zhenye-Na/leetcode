@@ -49,39 +49,31 @@
 #         self.right = right
 from collections import deque
 
+
 class Solution:
+    def deepestLeavesSum(self, root: Optional[TreeNode]) -> int:
+        max_depth = self._find_depth(root)
+        return self._find_max_depth_sum(root, max_depth)
 
-    def deepestLeavesSum(self, root: TreeNode) -> int:
-        depth = self.get_depth(root)
+    def _find_depth(self, root):
+        if not root:
+            return 0
+        return max(self._find_depth(root.left), self._find_depth(root.right)) + 1
 
-        queue = deque([root])
-        res = 0
+    def _find_max_depth_sum(self, root, max_depth):
         curr_depth = 1
+        queue = deque([root])
 
         while queue:
+            if curr_depth == max_depth:
+                return sum([x.val for x in queue])
             size = len(queue)
             for _ in range(size):
                 node = queue.popleft()
-                if curr_depth == depth:
-                    res += node.val
-
                 if node.left:
                     queue.append(node.left)
                 if node.right:
-                    queue.append(node.right)  
-
+                    queue.append(node.right)
             curr_depth += 1
-
-        return res
-
-
-    def get_depth(self, root):
-        if not root:
-            return 0
-
-        left = self.get_depth(root.left)
-        right = self.get_depth(root.right)
-
-        return max(left, right) + 1
 # @lc code=end
 
