@@ -58,32 +58,28 @@
 
 # @lc code=start
 class Solution:
-    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:        
-        m, n = len(obstacleGrid), len(obstacleGrid[0])
+    def __init__(self):
+        self.empty = 0
+        self.block = 1
 
-        # dp initialization
+    def uniquePathsWithObstacles(self, grid: List[List[int]]) -> int:
+        if not grid or len(grid) == 0 or len(grid[0]) == 0:
+            return 0
+
+        m, n = len(grid), len(grid[0])
         f = [[0 for _ in range(n)] for _ in range(m)]
-        f[0][0] = (1 if obstacleGrid[0][0] == 0 else 0)
-        
+        f[0][0] = 1 if grid[0][0] == self.empty else 0
+
         for i in range(1, m):
-            if obstacleGrid[i][0] == 1:
-                f[i][0] = 0
-            else:
-                f[i][0] = f[i - 1][0]
+            f[i][0] = 1 if f[i - 1][0] and grid[i][0] == self.empty else 0
 
         for j in range(1, n):
-            if obstacleGrid[0][j] == 1:
-                f[0][j] = 0
-            else:
-                f[0][j] = f[0][j - 1]
+            f[0][j] = 1 if f[0][j - 1] and grid[0][j] == self.empty else 0
 
         for i in range(1, m):
             for j in range(1, n):
-                if obstacleGrid[i][j] == 1:
-                    f[i][j] = 0
-                else:
-                    f[i][j] = f[i - 1][j] + f[i][j - 1]
+                f[i][j] = f[i][j - 1] + f[i - 1][j] if grid[i][j] == self.empty else 0
 
-        return f[m - 1][n - 1]
+        return f[-1][-1]
 # @lc code=end
 
