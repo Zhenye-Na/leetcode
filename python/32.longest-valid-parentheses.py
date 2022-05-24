@@ -51,8 +51,7 @@
 #
 
 # @lc code=start
-class Solution:
-
+class Solution_Stack:
     def longestValidParentheses(self, s: str) -> int:
         if not s or len(s) == 0:
             return 0
@@ -72,5 +71,35 @@ class Solution:
                     stack.append(i)
 
         return length
+
+
+class Solution_DP:
+    def longestValidParentheses(self, s: str) -> int:
+
+        # f[i] represents the length of the longest valid (well-formed) parentheses substring ending with s[i]
+        s = "#" + s
+        f = [0 for _ in range(len(s))]
+        f[0] = 0
+
+        for i in range(1, len(s)):
+            if s[i] == "(":
+                f[i] = 0
+            else:
+                # s[i] = ")"
+                if s[i - 1] == "(":
+                    f[i] = f[i - 2] + 2 if i >= 2 else 2
+                else:
+
+                    # eg: (())
+                    if i - f[i - 1] - 1 >= 0 and s[i - f[i - 1] - 1] == "(":
+
+                        f[i] = f[i - 1] + 2
+
+                        # plus length before, eg   () (())
+                        #                                i
+                        if i - f[i - 1] - 2 >= 0:
+                            f[i] += f[i - f[i - 1] - 2] if s[i - f[i - 1] - 2] == ")" else 0
+
+        return max(f)
 # @lc code=end
 
