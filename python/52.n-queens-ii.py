@@ -54,23 +54,21 @@ class Solution:
         self.n = n
         solutions = []
         self._dfs(0, [], solutions)
+
         return len(solutions)
 
     def _dfs(self, row_index, curr, res):
         if len(curr) == self.n:
             res.append(curr[:])
             return
-
         if row_index >= self.n:
             return
 
         for col in range(self.n):
-
             if len(curr) == 0 or self.check_valid(row_index, col, curr):
                 curr.append(col)
                 self._dfs(row_index + 1, curr, res)
                 curr.pop()
-
 
     def check_valid(self, x2, y2, curr):
         for x1, y1 in enumerate(curr):
@@ -80,8 +78,6 @@ class Solution:
                 return False
             if x1 - y1 == x2 - y2:
                 return False
-
         return True
-
 # @lc code=end
 
