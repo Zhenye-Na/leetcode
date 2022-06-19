@@ -80,17 +80,21 @@
 #
 
 # @lc code=start
+
+# Runtime 401 ms
+# Memory 21.3 MB
+
 class TrieNode:
     def __init__(self):
         self.children = {}
+        self.word = []
         self.is_word = False
-        self.words = []
 
 
 class Trie:
-    def __init__(self):
+    def __init__(self, output_limit):
         self.root = TrieNode()
-
+        self.output_limit = output_limit
 
     def insert(self, word):
         node = self.root
@@ -98,51 +102,89 @@ class Trie:
             if char not in node.children:
                 node.children[char] = TrieNode()
             node = node.children[char]
-            node.words.append(word)
+            node.word.append(word)
 
-        node.is_word = True
-
-
-    def search_word(self, word):
-        """
-        Given a word of a word, output the words with same prefix
-        """
-        if not word or len(word) == 0:
-            return []
-
-        ret = []
-
-        length = len(word)
+    def find_by_prefix(self, prefix):
         node = self.root
-        word_lst = []
+        result = []
 
-        curr_position = -1
-        for i in range(length):
-            char = word[i]
-            if char in node.children:
-                word_lst = node.children.get(char).words
-                word_lst.sort()
-                ret.append(word_lst[:3] if len(word_lst) > 3 else word_lst)
-                node.children[char].words = word_lst
-                
-                node = node.children[char]
-            else:
-                curr_position = i
-                break
-  
-        if curr_position != -1:
-            for j in range(curr_position, length):
-                ret.append([])
-
-        return ret
+        for char in prefix:
+            node = node.children.get(char)
+            if node is None:
+                return []
+            result = node.word[:]
+        result.sort()
+        return result[: self.output_limit]
 
 
 class Solution:
-    def suggestedProducts(self, products: List[str], searchWord: str) -> List[List[str]]:
-        trie = Trie()
+    def suggestedProducts(
+        self, products: List[str], searchWord: str
+    ) -> List[List[str]]:
+
+        trie = Trie(3)
         for product in products:
             trie.insert(product)
 
-        return trie.search_word(searchWord)
+        outputs = []
+        for i in range(1, len(searchWord) + 1):
+            outputs.append(trie.find_by_prefix(searchWord[0:i]))
+
+        return outputs
+
+
+
+# Runtime 200 ms
+# Memory 21.3 MB
+
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.word = []
+        self.is_word = False
+
+
+class Trie:
+    def __init__(self, output_limit):
+        self.root = TrieNode()
+        self.output_limit = output_limit
+
+    def insert(self, word):
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode()
+            node = node.children[char]
+            if len(node.word) < 3:
+                node.word.append(word)
+
+    def find_by_prefix(self, node, char):
+
+        if node is None:
+            return [], None
+        node = node.children.get(char)
+        if node is None:
+            return [], None
+        return node.word[:], node
+
+
+class Solution:
+    def suggestedProducts(
+        self, products: List[str], searchWord: str
+    ) -> List[List[str]]:
+
+        products.sort()
+
+        trie = Trie(3)
+        for product in products:
+            trie.insert(product)
+
+        outputs = []
+        node = trie.root
+        for i in range(len(searchWord)):
+            results, node = trie.find_by_prefix(node, searchWord[i])
+            outputs.append(results)
+
+        return outputs
 # @lc code=end
 
