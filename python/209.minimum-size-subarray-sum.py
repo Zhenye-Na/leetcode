@@ -63,20 +63,23 @@ class Solution:
             return 0
 
         length = len(nums)
+        min_i, min_j = 0, 0
         res = len(nums)
         running_sum = 0
         j = 0
+
         for i in range(length):
+    
             while j < length and running_sum < target:
                 running_sum += nums[j]
                 j += 1
-            if running_sum >= target:
-                res = min(res, j - i)
+
+            if running_sum >= target and j - i <= res:
+                min_i, min_j = i, j
+                res = j - i
 
             running_sum -= nums[i]
 
-        if res == length and running_sum < target:
-            return 0
-        return res
+        return min_j - min_i
 # @lc code=end
 
