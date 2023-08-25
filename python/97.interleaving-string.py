@@ -100,5 +100,37 @@ class Solution:
                     f[i][j] = True
 
         return f[l1][l2]
+
+
+class Solution:
+    def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
+        if len(s1) + len(s2) != len(s3):
+            return False
+
+        l1, l2 = len(s1) + 1, len(s2) + 1
+        f = [[False for _ in range(l2)] for _ in range(l1)]
+
+        f[0][0] = True
+
+        for i in range(1, l1):
+            f[i][0] = s1[:i] == s3[:i]
+
+
+        for j in range(1, l2):
+            f[0][j] = s2[:j] == s3[:j]
+
+
+        for i in range(1, l1):
+            for j in range(1, l2):
+
+                if f[i - 1][j]:
+                    if s1[i - 1] == s3[i + j - 1]:
+                        f[i][j] = True
+                
+                if f[i][j - 1]:
+                    if s2[j - 1] == s3[i + j - 1]:
+                        f[i][j] = True
+
+        return f[-1][-1]
 # @lc code=end
 
