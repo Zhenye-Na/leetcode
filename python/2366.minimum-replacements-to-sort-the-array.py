@@ -6,8 +6,6 @@
 # @lc code=start
 class Solution:
     def minimumReplacement(self, nums: List[int]) -> int:
-class Solution:
-    def minimumReplacement(self, nums: List[int]) -> int:
 
         if not nums or len(nums) == 0:
             return 0
@@ -45,5 +43,4 @@ class Solution:
 
         return ops
 # @lc code=end
-
 
