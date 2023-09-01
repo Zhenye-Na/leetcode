@@ -78,5 +78,20 @@ class Solution:
 
             res.append(count)
         return res
+
+
+class Solution:
+    def countBits(self, n: int) -> List[int]:
+        res = []
+        
+        for i in range(n + 1):
+            total = 0
+            while i > 0:
+                total += i & 1
+                i = i >> 1
+        
+            res.append(total)
+        
+        return res
 # @lc code=end
 
