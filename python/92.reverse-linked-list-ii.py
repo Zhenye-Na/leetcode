@@ -101,5 +101,39 @@ class Solution:
 
         return prev, stop
 
+class Solution:
+    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+
+        left_node, right_node = None, None
+        left_left_node, right_right_node = None, None
+
+        i = 1
+        cursor = head
+        while i < left:
+            left_left_node = cursor
+            cursor = cursor.next
+            i += 1
+
+        left_node = cursor
+
+        prev_node, next_node = None, None
+        while i <= right:
+
+            next_node = cursor.next
+            cursor.next = prev_node
+            prev_node = cursor
+            cursor = next_node
+
+            i += 1
+
+        right_node = prev_node
+        right_right_node = cursor
+
+        # stitch 3 pices together
+        if left_left_node:
+            left_left_node.next = right_node
+        left_node.next = right_right_node
+
+        return head if left_left_node else right_node
 # @lc code=end
 
