@@ -76,16 +76,19 @@ class Solution:
             for num in nums:
                 if num > i:
                     break
+
                 f[i] += f[i - num]
 
         return f[target]
 
 
 class Solution_DFS:
+
     def combinationSum4(self, nums: List[int], target: int) -> int:
         self.res = set([])
         nums.sort()
         self.dfs(nums, target, [], 0)
+
         return len(self.res)
 
 
@@ -96,11 +99,10 @@ class Solution_DFS:
                 self.res.add(combination)
             return
 
-
         for i in range(start, len(nums)):
             if nums[i] > target:
                 continue
-            
+
             curr.append(nums[i])
             self.dfs(nums, target - nums[i], curr, 0)
             curr.pop()
