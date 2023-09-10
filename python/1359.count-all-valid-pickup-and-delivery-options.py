@@ -68,5 +68,27 @@ class Solution:
             f[i] = (f[i - 1] * (2 * i - 1) * i) % (10 ** 9 + 7)
 
         return f[-1]
+
+
+class Solution:
+    def countOrders(self, n: int) -> int:
+
+        # dp[i] means that number of sequence for total of i pick-ups and deliveries
+        dp = [0 for _ in range(n)]
+        dp[0] = 1
+
+        for i in range(1, n):
+            dp[i] = int((dp[i - 1] * (1 + 2 * i + 1) * (2 * i + 1) / 2) % (10 ** 9 + 7))
+
+        return dp[-1]
+
+# [p1 ... pi, d1 ... di]
+#  pj   2 * i for dj
+#       2i - 1
+#       ..
+
+#     1
+
+#  ^  p3, P1, p3 P2,D2,D1  p3
 # @lc code=end
 
