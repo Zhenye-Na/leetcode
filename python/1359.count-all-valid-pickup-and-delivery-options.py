@@ -90,5 +90,16 @@ class Solution:
 #     1
 
 #  ^  p3, P1, p3 P2,D2,D1  p3
+
+class Solution:
+    def countOrders(self, n: int) -> int:
+
+        dp = [0 for _ in range(2)]
+        dp[0] = 1
+
+        for i in range(1, n):
+            dp[i % 2] = int((dp[(i - 1) % 2] * (1 + 2 * i + 1) * (2 * i + 1) / 2) % (10 ** 9 + 7))
+
+        return dp[(n + 1) % 2]
 # @lc code=end
 
