@@ -81,5 +81,37 @@ class Solution:
                 candies[i] = max(candies[i], candies[i + 1] + 1)
 
         return sum(candies)
+
+from heapq import heappush, heappop
+
+class Solution_Heap:
+    def candy(self, ratings: List[int]) -> int:
+        
+        n = len(ratings)
+        candies = [0 for _ in range(n)]
+
+        heap = []
+        for i in range(n):
+            heappush(heap, (ratings[i], i))
+
+        while heap:
+            rate, idx = heappop(heap)
+            candies[idx] += 1
+
+            if idx == 0:
+                if idx + 1 < n and rate > ratings[idx + 1]:
+                    candies[idx] = candies[idx + 1] + 1
+            elif idx == n - 1:
+                if idx - 1 >= 0 and rate > ratings[idx - 1]:
+                    candies[idx] = candies[idx - 1] + 1
+            else:
+                if rate > ratings[idx + 1] and rate > ratings[idx - 1]:
+                    candies[idx] = max(candies[idx - 1], candies[idx + 1]) + 1
+                elif rate > ratings[idx - 1]:
+                    candies[idx] = candies[idx - 1] + 1
+                elif rate > ratings[idx + 1]:
+                    candies[idx] = candies[idx + 1] + 1
+
+        return sum(candies)
 # @lc code=end
 
