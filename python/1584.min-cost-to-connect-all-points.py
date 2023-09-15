@@ -54,6 +54,52 @@
 #
 
 # @lc code=start
+from heapq import heappush, heappop
+from collections import defaultdict
+
+class Solution:
+
+    def __init__(self):
+        self.visited = set()
+        self.neighbors = defaultdict(list)
+
+    def minCostConnectPoints(self, points: List[List[int]]) -> int:
+
+        self.constructNeighbors(points)
+
+        heap = []
+        heap.append((0, points[0]))
+
+        min_cost = 0
+        while heap:
+
+            if len(self.visited) == len(points):
+                return min_cost
+
+            curr_cost, curr_point = heappop(heap)
+            if tuple(curr_point) in self.visited:
+                continue
+
+            min_cost += curr_cost
+            self.visited.add(tuple(curr_point))
+
+            neighbors = self.neighbors[tuple(curr_point)]
+            for n in neighbors:
+                heappush(heap, n)
+
+        return 0
+
+    def constructNeighbors(self, points):
+        for i in range(len(points)):
+            for j in range(len(points)):
+                if i != j:
+                    cost = self.manhattan(points[i], points[j])
+                    self.neighbors[tuple(points[i])].append((cost, points[j]))
+
+    def manhattan(self, pointA, pointB):
+        return abs(pointA[0] - pointB[0]) + abs(pointA[1] - pointB[1])
+
+
 class Solution:
     def minCostConnectPoints(self, points: List[List[int]]) -> int:
         manhattan = lambda p1, p2: abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])
