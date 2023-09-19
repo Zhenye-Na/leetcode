@@ -78,7 +78,16 @@ class Solution:
 # O(n) two pointers
 class Solution_TwoPointers:
     def findDuplicate(self, nums: List[int]) -> int:
-        pass
+        nums.sort()
+
+        left, right = 0, 1
+        while right < len(nums):
+            if nums[left] == nums[right]:
+                return nums[left]
+
+            left += 1
+            right += 1
+
 
 # O(nlogn) sort
 # O(logn) binary search
@@ -112,5 +121,14 @@ class Solution_BinarySearch:
             return True 
         return False
 
+# O(n^2) Time
+# O(1) Space
+# Bit Manipulation
+class Solution:
+    def findDuplicate(self, nums: List[int]) -> int:
+        for i in range(len(nums)):
+            for j in range(i):
+                if nums[i] ^ nums[j] == 0:
+                    return nums[i]
 # @lc code=end
 
