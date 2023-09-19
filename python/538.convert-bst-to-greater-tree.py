@@ -78,11 +78,85 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+# DFS with global variable
+class Solution:
+
+    def __init__(self):
+        self.greater = 0
+
+    def convertBST(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        
+        self.dfs(root)
+        return root
+
+    def dfs(self, node):
+        if not node:
+            return 0
+
+        self.dfs(node.right)
+
+        self.greater += node.val
+        node.val = self.greater
+
+        self.dfs(node.left)
+
+        return node
+
+
+# DFS without global variable
+class Solution:
+    def convertBST(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+
+        self.dfs(root, 0)
+        return root
+
+    def dfs(self, node, carry):
+        if not node:
+            return carry
+
+        carry = self.dfs(node.right, carry)
+
+        carry += node.val
+        node.val = carry
+
+        return self.dfs(node.left, carry)
+
+# Stack
+class Solution:
+
+    def __init__(self):
+        self.greater = 0
+
+    def convertBST(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+
+        stack = []
+        node = root
+        while node:
+            stack.append(node)
+            node = node.right
+
+        while stack or node is not None:
+            while node:
+                stack.append(node)
+                node = node.right
+
+            node = stack.pop()
+
+            self.greater += node.val
+            node.val = self.greater
+
+            node = node.left
+
+        return root
+
+
+# Construct a new tree
+# Not in-place operation
 class Solution:
     def convertBST(self, root: TreeNode) -> TreeNode:
         new_root, _ = self.convert(root, 0)
         return new_root
-
 
     def convert(self, root, incre):
         if not root:
