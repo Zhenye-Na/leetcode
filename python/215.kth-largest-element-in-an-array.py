@@ -35,7 +35,9 @@
 #
 
 # @lc code=start
-
+#
+# Time Complexity: O(nlog(k))
+# Space Complexity: O(k)
 from heapq import heappush, heapreplace, nlargest
 
 class Solution_Heap:
@@ -54,10 +56,8 @@ class Solution_Heap:
         return nlargest(k, heap)[-1]
 
 
-# Time Complexity: O(nlog(k))
-# Space Complexity: O(k)
-
-
+# Time Complexity: O(n)
+# Space Complexity: O(1)
 class Solution_QuickSelect:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         if not nums or len(nums) < k:
@@ -66,7 +66,7 @@ class Solution_QuickSelect:
         return self._quick_select(nums, 0, len(nums) - 1, k)
 
     def _quick_select(self, nums, start_index, end_index, k):
-        
+
         left, right = start_index, end_index
         pivot = nums[(left + right) // 2]
 
@@ -84,14 +84,10 @@ class Solution_QuickSelect:
 
         if (start_index + k) - 1 <= right:
             return self._quick_select(nums, start_index, right, k)
-        elif (start_index + k) - 1 >= left:
+
+        if (start_index + k) - 1 >= left:
             return self._quick_select(nums, left, end_index, k - (left - start_index))
 
         return nums[right + 1]
-
-# Time Complexity: O(n)
-# Space Complexity: O(1)
-
-
 # @lc code=end
 
