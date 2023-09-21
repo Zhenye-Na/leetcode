@@ -105,6 +105,42 @@ class Solution_QuickSelect:
         return nums[right + 1]
 
 
+class Solution_BinarySearch:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        m = len(nums1)
+        n = len(nums2)
+
+        if (m + n) % 2 != 0:
+            return self.findK(nums1, 0, nums2, 0, (m + n) // 2 + 1)
+        else:
+            return ( self.findK(nums1, 0, nums2, 0, (m + n) // 2) + self.findK(nums1, 0, nums2, 0, (m + n) // 2 + 1) ) / 2
+
+    def findK(self, nums1, idx1, nums2, idx2, k):
+
+        if idx1 >= len(nums1):
+            return nums2[idx2 + k - 1]
+
+        if idx2 >= len(nums2):
+            return nums1[idx1 + k - 1]
+
+        # base case
+        if k == 1:
+            return min(nums1[idx1], nums2[idx2])
+
+        val1 = float('inf')
+        val2 = float('inf')
+
+        if idx1 + k // 2 - 1 < len(nums1):
+            val1 = nums1[idx1 + k // 2 - 1]
+        
+        if idx2 + k // 2 - 1 < len(nums2):
+            val2 = nums2[idx2 + k // 2 - 1]
+
+        if val1 > val2:
+            return self.findK(nums1, idx1, nums2, idx2 + k // 2, k - (k // 2))
+        else:
+            return self.findK(nums1, idx1 + k // 2, nums2, idx2, k - (k // 2))
+
 
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
@@ -138,6 +174,5 @@ class Solution:
                 left = position_x + 1
 
         return 0
-
 # @lc code=end
 
