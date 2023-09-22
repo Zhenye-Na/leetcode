@@ -45,7 +45,7 @@
 #
 
 # @lc code=start
-class Solution:
+class Solution_TwoPointers:
     def isSubsequence(self, s: str, t: str) -> bool:
         if not s or len(s) == 0:
             return True
@@ -64,7 +64,24 @@ class Solution:
         return False
 
 
-    def isSubsequence_DynamicProgramming(self, s: str, t: str) -> bool:
+class Solution_TwoPointers:
+    def isSubsequence(self, s: str, t: str) -> bool:
+
+        sp = 0
+        for tp in range(len(t)):
+            if sp < len(s) and t[tp] == s[sp]:
+                sp += 1
+
+            if sp >= len(s):
+                break
+
+        if sp < len(s):
+            return False
+        return True
+
+
+class Solution_DP:
+    def isSubsequence(self, s: str, t: str) -> bool:
         s = "#" + s
         t = "#" + t
 
