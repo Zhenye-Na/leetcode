@@ -77,6 +77,36 @@
 # @lc code=start
 class Solution:
     def champagneTower(self, poured: int, query_row: int, query_glass: int) -> float:
+
+        # dp[i][j] represents the % of fullness of ith row, jth glass
+        # left[i][j] represents how much wine is left in ith row, jth glass
+        dp, left = [], []
+        for row in range(query_row + 1):
+            dp.append([0 for _ in range(row + 1)])
+            left.append([0 for _ in range(row + 1)])
+
+        dp[0][0] = 1 if poured >= 1 else 0
+        left[0][0] = 0 if poured <= 1 else poured - 1
+
+        for i in range(1, query_row + 1):
+            dp[i][0] = 1 if left[i - 1][0] / 2 >= 1 else left[i - 1][0] / 2
+            left[i][0] = 0 if dp[i][0] < 1 else left[i - 1][0] / 2 - 1
+
+        for i in range(1, query_row + 1):
+            dp[i][i] = 1 if left[i - 1][i - 1] / 2 >= 1 else left[i - 1][i - 1] / 2
+            left[i][i] = 0 if dp[i][i] < 1 else left[i - 1][i - 1] / 2 - 1
+
+        for i in range(1, query_row + 1):
+            for j in range(1, len(dp[i]) - 1):
+                total = left[i - 1][j - 1] / 2 + left[i - 1][j] / 2
+
+                dp[i][j] = 1 if total >= 1 else total
+                left[i][j] = total - 1 if total >= 1 else 0
+
+        return dp[query_row][query_glass]
+
+class Solution:
+    def champagneTower(self, poured: int, query_row: int, query_glass: int) -> float:
         f = [[0 for _ in range(n + 2)] for _ in range(1, n + 2)]
         delta = [[0 for _ in range(n + 2)] for _ in range(1, n + 2)]
 
