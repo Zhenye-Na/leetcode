@@ -1,21 +1,20 @@
 #
-# @lc app=leetcode id=316 lang=python3
+# @lc app=leetcode id=1081 lang=python3
 #
-# [316] Remove Duplicate Letters
+# [1081] Smallest Subsequence of Distinct Characters
 #
-# https://leetcode.com/problems/remove-duplicate-letters/description/
+# https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/description/
 #
 # algorithms
-# Medium (39.97%)
-# Likes:    7413
-# Dislikes: 479
-# Total Accepted:    250.7K
-# Total Submissions: 542.6K
+# Medium (53.86%)
+# Likes:    2350
+# Dislikes: 174
+# Total Accepted:    55.3K
+# Total Submissions: 94.2K
 # Testcase Example:  '"bcabc"'
 #
-# Given a string s, remove duplicate letters so that every letter appears once
-# and only once. You must make sure your result is the smallest in
-# lexicographical order among all possible results.
+# Given a string s, return the lexicographically smallest subsequence of s that
+# contains all the distinct characters of s exactly once.
 # 
 # 
 # Example 1:
@@ -36,19 +35,18 @@
 # Constraints:
 # 
 # 
-# 1 <= s.length <= 10^4
+# 1 <= s.length <= 1000
 # s consists of lowercase English letters.
 # 
 # 
 # 
-# Note: This question is the same as 1081:
-# https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/
-# 
+# Note: This question is the same as 316:
+# https://leetcode.com/problems/remove-duplicate-letters/
 #
 
 # @lc code=start
 class Solution:
-    def removeDuplicateLetters(self, s: str) -> str:
+    def smallestSubsequence(self, s: str) -> str:
         counter = Counter(s)
         stack = []
         for letter in s:
