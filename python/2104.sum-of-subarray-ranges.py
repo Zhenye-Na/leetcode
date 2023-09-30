@@ -15,7 +15,7 @@ class Solution_MonotonicStack:
             if len(stack) == 0:
                 stack.append(idx)
             else:
-                while stack and min_nums[stack[-1]] > num: # monotonic decreasing stack
+                while stack and min_nums[stack[-1]] > num: # monotonic increasing stack
                     pos = stack.pop()
                     left = stack[-1] if stack else -1
                     res -= min_nums[pos] * (idx - pos) * (pos - left)
@@ -28,7 +28,7 @@ class Solution_MonotonicStack:
             if len(stack) == 0:
                 stack.append(idx)
             else:
-                while stack and max_nums[stack[-1]] < num: # monotonic increasing stack
+                while stack and max_nums[stack[-1]] < num: # monotonic decreasing stack
                     pos = stack.pop()
                     left = stack[-1] if stack else -1
                     res += max_nums[pos] * (idx - pos) * (pos - left)
