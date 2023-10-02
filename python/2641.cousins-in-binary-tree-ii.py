@@ -6,11 +6,11 @@
 # https://leetcode.com/problems/cousins-in-binary-tree-ii/description/
 #
 # algorithms
-# Medium (62.29%)
-# Likes:    117
-# Dislikes: 2
-# Total Accepted:    6K
-# Total Submissions: 9.7K
+# Medium (67.61%)
+# Likes:    473
+# Dislikes: 7
+# Total Accepted:    15.1K
+# Total Submissions: 22.3K
 # Testcase Example:  '[5,4,9,1,10,null,7]'
 #
 # Given the root of a binary tree, replace the value of each node in the tree
@@ -109,3 +109,4 @@ class Solution:
         self.findTotal(node.left, height + 1)
         self.findTotal(node.right, height + 1)
 # @lc code=end
+
