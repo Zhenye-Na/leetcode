@@ -40,8 +40,8 @@
 #
 
 # @lc code=start
-class Solution:
-    def majorityElement_Misra_Gries_Algorithm(self, nums: List[int]) -> int:
+class Solution_Misra_Gries:
+    def majorityElement(self, nums: List[int]) -> int:
         key, count = None, 0
         for num in nums:
             if not key:
@@ -58,7 +58,8 @@ class Solution:
         return key
 
 
-    def majorityElement_HashMap(self, nums: List[int]) -> int:
+class Solution_HashMap:
+    def majorityElement(self, nums: List[int]) -> int:
         counts = collections.Counter(nums)
         return max(counts.keys(), key=counts.get)
 # @lc code=end
