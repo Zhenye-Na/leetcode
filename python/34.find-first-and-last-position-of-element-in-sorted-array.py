@@ -95,7 +95,7 @@ class Solution_bisect:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         if not nums or len(nums) == 0:
             return [-1, -1]
-        
+
         left = bisect.bisect_left(nums, target)
         right = bisect.bisect(nums, target)
 
