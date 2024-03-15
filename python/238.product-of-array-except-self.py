@@ -94,6 +94,27 @@ class Solution_Forward_Backward_Pass:
 
         return res
 
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+
+        prefix_product = []
+        for num in nums:
+            prefix_product.append(prefix_product[-1] * num if len(prefix_product) > 0 else num)
+    
+        suffix_product = []
+        for num in nums[::-1]:
+            suffix_product.append(suffix_product[-1] * num if len(suffix_product) > 0 else num)
+        suffix_product = suffix_product[::-1]
+
+        res = [suffix_product[1]]
+        for i in range(1, len(nums) - 1):
+            prefix = prefix_product[i - 1]
+            suffix = suffix_product[i + 1]
+
+            res.append(prefix * suffix)
+
+        res.append(prefix_product[len(nums) - 2])
+        return res
 
 # Time O(n)
 # Space O(1)
