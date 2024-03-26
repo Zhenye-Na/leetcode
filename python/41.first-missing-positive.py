@@ -43,10 +43,29 @@
 #
 
 # @lc code=start
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        nums = ["#"] + nums
+        for i in range(1, len(nums)):
+            while i != nums[i]:
+                if nums[i] < 1 or nums[i] >= len(nums):
+                    break
+
+                if nums[i] == nums[nums[i]]:
+                    break
+
+                tmp = nums[i]
+                nums[i] = nums[nums[i]]
+                nums[tmp] = tmp
+
+        for i in range(1, len(nums)):
+            if i != nums[i]:
+                return i
+
+        return len(nums)
 
 # resources
 #   https://www.youtube.com/watch?v=9SnkdYXNIzM&ab_channel=MichaelMuinos
-
 class Solution:
     def firstMissingPositive(self, nums: List[int]) -> int:
         if not nums or len(nums) == 0:
@@ -58,7 +77,7 @@ class Solution:
         for i in range(l):
             if nums[i] == 1:
                 containsOne = True
-            
+
             elif nums[i] <= 0 or nums[i] > l:
                 nums[i] = 1
 
