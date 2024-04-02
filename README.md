@@ -1,6 +1,6 @@
 <h3 align="center"><strong>LeetCode Problems</strong></h3>
 
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![LeetCode](https://img.shields.io/badge/LeetCode-000000?logo=LeetCode&logoColor=#d16c06)](https://leetcode.com/zna2/) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![wakatime](https://wakatime.com/badge/user/4056df4b-427f-4e3a-81d2-24ad91299c3b/project/fdbd334e-eb72-4308-a78f-54aae631ba60.svg)](https://wakatime.com/badge/user/4056df4b-427f-4e3a-81d2-24ad91299c3b/project/fdbd334e-eb72-4308-a78f-54aae631ba60)
 
 ### DFS
 #### Catlan Number
