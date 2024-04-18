@@ -70,29 +70,25 @@ class Solution:
         self.m = 0
         self.LAND = 1
         self.WATER = 0
-    
-        #       up, down, right, left
+
         self.dx = [0, 0, 1, -1]
         self.dy = [1, -1, 0, 0]
-
 
     def islandPerimeter(self, grid: List[List[int]]) -> int:
         if not grid or len(grid) == 0 or len(grid[0]) == 0:
             return 0
-        
+
         self.n, self.m = len(grid), len(grid[0])
-        
         x, y = 0, 0
         for i in range(self.n):
             for j in range(self.m):
                 if grid[i][j] == self.LAND:
                     return self.bfs(grid, i, j)
 
-
     def bfs(self, grid, x, y):
         queue = deque([(x, y)])
         self.seen = set([(x, y)])
-        
+
         res = 0
         while queue:
             x, y = queue.popleft()
@@ -104,11 +100,10 @@ class Solution:
                     if (next_x, next_y) not in self.seen:
                         self.seen.add((next_x, next_y))
                         queue.append((next_x, next_y))
-                
             res += 4 - adj
 
-
         return res
+
     def is_valid(self, x, y, grid):
         return 0 <= x < self.n and 0 <= y < self.m and grid[x][y] == self.LAND
 # @lc code=end
