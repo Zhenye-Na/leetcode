@@ -16,46 +16,47 @@
 # Given a collection of candidate numbers (candidates) and a target number
 # (target), find all unique combinations in candidates where the candidate
 # numbers sum to target.
-# 
+#
 # Each number in candidates may only be used once in the combination.
-# 
+#
 # Note: The solution set must not contain duplicate combinations.
-# 
-# 
+#
+#
 # Example 1:
-# 
-# 
+#
+#
 # Input: candidates = [10,1,2,7,6,1,5], target = 8
-# Output: 
+# Output:
 # [
 # [1,1,6],
 # [1,2,5],
 # [1,7],
 # [2,6]
 # ]
-# 
-# 
+#
+#
 # Example 2:
-# 
-# 
+#
+#
 # Input: candidates = [2,5,2,1,2], target = 5
-# Output: 
+# Output:
 # [
 # [1,2,2],
 # [5]
 # ]
-# 
-# 
-# 
+#
+#
+#
 # Constraints:
-# 
-# 
+#
+#
 # 1 <= candidates.length <= 100
 # 1 <= candidates[i] <= 50
 # 1 <= target <= 30
-# 
-# 
 #
+#
+#
+
 
 # @lc code=start
 class Solution:
@@ -79,9 +80,13 @@ class Solution:
             return
 
         for i in range(start, len(candidates)):
-            if i != start and candidates[i] == candidates[i - 1] and visited[i - 1] == 0:
+            if (
+                i != start
+                and candidates[i] == candidates[i - 1]
+                and visited[i - 1] == 0
+            ):
                 continue
-            
+
             if candidates[i] > target:
                 continue
 
@@ -90,5 +95,32 @@ class Solution:
             self._dfs(candidates, target - candidates[i], curr, res, i + 1, visited)
             curr.pop()
             visited[i] = 0
-# @lc code=end
 
+
+class Solution:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        self.results = set()
+        candidates.sort()
+        self._dfs([], target, 0, candidates)
+
+        return self.results
+
+    def _dfs(self, selection, target, pointer, candidates):
+
+        if target == 0:
+            self.results.add(tuple(selection[:]))
+
+        for i in range(pointer, len(candidates)):
+
+            if i != pointer and candidates[i] == candidates[i - 1]:
+                continue
+
+            if candidates[i] > target:
+                break
+
+            selection.append(candidates[i])
+            self._dfs(selection, target - candidates[i], i + 1, candidates)
+            selection.pop()
+
+
+# @lc code=end
