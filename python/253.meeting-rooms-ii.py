@@ -21,24 +21,27 @@
 
 # Input: intervals = [(2,7)]
 # Output: 1
-# Explanation: 
+# Explanation:
 # Only need one meeting room
 
+# @lc code=start
+
 """
-Definition of Interval.
+Definition of Interval:
 class Interval(object):
     def __init__(self, start, end):
         self.start = start
         self.end = end
 """
 
+
 class Solution:
     """
     @param intervals: an array of meeting time intervals
     @return: the minimum number of conference rooms required
     """
-    def minMeetingRooms(self, intervals):
-        # Write your code here
+
+    def min_meeting_rooms(self, intervals: List[Interval]) -> int:
         time_points = []
         for interval in intervals:
             time_points.append((interval.start, 1))
@@ -51,3 +54,6 @@ class Solution:
             max_room = max(max_room, curr_room)
 
         return max_room
+
+
+# @lc code=end
