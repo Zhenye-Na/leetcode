@@ -15,48 +15,48 @@
 #
 # Given the head of a singly linked list and an integer k, split the linked
 # list into k consecutive linked list parts.
-# 
+#
 # The length of each part should be as equal as possible: no two parts should
 # have a size differing by more than one. This may lead to some parts being
 # null.
-# 
+#
 # The parts should be in the order of occurrence in the input list, and parts
 # occurring earlier should always have a size greater than or equal to parts
 # occurring later.
-# 
+#
 # Return an array of the k parts.
-# 
-# 
+#
+#
 # Example 1:
-# 
-# 
+#
+#
 # Input: head = [1,2,3], k = 5
 # Output: [[1],[2],[3],[],[]]
 # Explanation:
 # The first element output[0] has output[0].val = 1, output[0].next = null.
 # The last element output[4] is null, but its string representation as a
 # ListNode is [].
-# 
-# 
+#
+#
 # Example 2:
-# 
-# 
+#
+#
 # Input: head = [1,2,3,4,5,6,7,8,9,10], k = 3
 # Output: [[1,2,3,4],[5,6,7],[8,9,10]]
 # Explanation:
 # The input has been split into consecutive parts with size difference at most
 # 1, and earlier parts are a larger size than the later parts.
-# 
-# 
-# 
+#
+#
+#
 # Constraints:
-# 
-# 
+#
+#
 # The number of nodes in the list is in the range [0, 1000].
 # 0 <= Node.val <= 1000
 # 1 <= k <= 50
-# 
-# 
+#
+#
 #
 
 # @lc code=start
@@ -65,46 +65,54 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+from typing import Optional
+
+
 class Solution:
-    def splitListToParts(self, head: Optional[ListNode], k: int) -> List[Optional[ListNode]]:
-        n = self.getLength(head)
-        m = n // k
-        segments = [m for _ in range(k)]
-        l = n % k
-        if l != 0:
-            i = 0
-            while l > 0 and i < k:
-                segments[i] += 1
-                l -= 1
-                i += 1
+    def splitListToParts(
+        self, head: Optional[ListNode], k: int
+    ) -> List[Optional[ListNode]]:
+        total_len = self._get_length(head)
+        quo, rem = divmod(total_len, k)
+        arr = [quo for _ in range(k)]
+        for i in range(len(arr)):
+            if rem == 0:
+                break
+
+            arr[i] += 1
+            rem -= 1
 
         res = []
-        node = head
-        for s in segments:
-            part, node = self.getSegment(node, s)
-            res.append(part)
+        for target in arr:
+            curr, next_head = self._split_list(head, target)
+            res.append(curr)
+            head = next_head
 
         return res
 
-    def getSegment(self, node, k):
-        head = node
-        last_node = node
-        while node and k > 0:
-            last_node = node
-            node = node.next
-            k -= 1
+    def _split_list(self, head, target_len):
+        # return 2 things, 1\ current split 2\ next split head
+        split_head = head
+        prev_node = None
+        curr_len = 0
+        while head and curr_len < target_len:
+            prev_node = head
+            head = head.next
+            curr_len += 1
 
-        if last_node:
-            last_node.next = None
-        return head, node
+        if not head:
+            return split_head, None
+        else:
+            prev_node.next = None
+            return split_head, head
 
-    def getLength(self, head):
+    def _get_length(self, head):
         length = 0
-        node = head
-        while node:
+        while head:
+            head = head.next
             length += 1
-            node = node.next
 
         return length
-# @lc code=end
 
+
+# @lc code=end
